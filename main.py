@@ -1,7 +1,9 @@
+import readInput
+from pathlib import Path
 
-def print_hi(name):
-    print(f'Hi, {name}')
-
+def read():
+    file = Path(__file__).parent / "assets/WGUPSDistanceTable.csv"
+    readInput.readFile(file)
 
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    read()
