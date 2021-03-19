@@ -1,9 +1,9 @@
-import readInput
-from pathlib import Path
-
-def read():
-    file = Path(__file__).parent / "assets/WGUPSDistanceTable.csv"
-    readInput.readFile(file)
+##############################################################################
+##############################################################################
+#Florentino Madrid
+##############################################################################
+##############################################################################
+from IO import readInput
 
 if __name__ == '__main__':
-    read()
+    readInput.read()
