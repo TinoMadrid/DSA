@@ -26,5 +26,5 @@
 5.0,4.4,2.8,10.1,5.4,3.5,5.1,6.2,2.8,3.2,11.0,3.7,2.8,6.4,6.5,5.7,6.2,5.1,4.3,1.8,6.0,7.9,6.8,10.6,7.0,0.0,
 3.6,13.0,7.4,10.1,5.5,7.2,14.2,10.7,14.1,6.0,6.8,6.4,14.1,10.5,8.8,8.4,13.6,5.2,6.9,13.1,4.1,4.7,3.1,7.8,1.3,8.3,0.0
 
-##take recipocal values and fill in with values for empty cells
+##take reciprocal values and fill in with values for empty cells
 ##27 rows with 27 values, discard everything but float values
