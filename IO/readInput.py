@@ -6,6 +6,7 @@ def readFile(f, dataVar):
         dataVar += line
     return dataVar
 
+
 def read():
     file = Path(__file__).parent / "../assets/WGUPSDistanceTable.csv"
     temp = " "
