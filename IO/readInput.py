@@ -10,3 +10,4 @@ def read():
     file = Path(__file__).parent / "../assets/WGUPSDistanceTable.csv"
     temp = " "
     unfilteredGraphData = readFile(file, temp)
+    print(unfilteredGraphData)
