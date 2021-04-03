@@ -13,6 +13,7 @@ if __name__ == '__main__':
     #testImplement = implementation(1,"195 W Oakland Ave","Salt Lake City","UT",84115,"###",21, " ")
     count = 0
     testImplement = implementation.implementation()
-    testImplement.insert("test", count)
+    count = testImplement.insert("test", count)
     print(testImplement.table)
+    print(testImplement.lookup(0))
 
