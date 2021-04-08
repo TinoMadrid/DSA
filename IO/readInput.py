@@ -3,7 +3,7 @@ from pathlib import Path
 from Algorithm.PackageModel import Package
 
 
-def readFile(dataVar, table):
+def readFile(table):
 
     newPck1 = Package(1, "195 W Oakland Ave", "Salt Lake City","UT",84115,"###",21,None)
     newPck2 = Package(2, "2530 S 500 E", "Salt Lake City","UT",84106,"EOD",44,None)
@@ -93,10 +93,74 @@ def readFile(dataVar, table):
     table.insert(newPck39.packageID, newPck39)
     table.insert(newPck40.packageID, newPck40)
 
+    ############################################################################################################
+    distanceTable = [[] for i in range(30)]
+
+    distanceTable[0].append(0.0)
+    distanceTable[0].append(7.2)
+    distanceTable[0].append(3.8)
+    distanceTable[0].append(11.0)
+    distanceTable[0].append(2.2)
+    distanceTable[0].append(3.5)
+    distanceTable[0].append(10.9)
+    distanceTable[0].append(8.6)
+    distanceTable[0].append(7.6)
+
+    distanceTable[0].append(2.8)
+    distanceTable[0].append(6.4)
+    distanceTable[0].append(3.2)
+    distanceTable[0].append(7.6)
+    distanceTable[0].append(5.2)
+    distanceTable[0].append(4.4)
+    distanceTable[0].append(3.7)
+    distanceTable[0].append(7.6)
+    distanceTable[0].append(2.0)
+
+    distanceTable[0].append(3.6)
+    distanceTable[0].append(6.5)
+    distanceTable[0].append(1.9)
+    distanceTable[0].append(3.4)
+    distanceTable[0].append(2.4)
+    distanceTable[0].append(6.4)
+    distanceTable[0].append(2.4)
+    distanceTable[0].append(5.0)
+    distanceTable[0].append(3.6)
+    ############################################################################################################
+    distanceTable[1].append(7.2)
+    distanceTable[1].append(0.0)
+    distanceTable[1].append(7.1)
+    distanceTable[1].append(6.4)
+    distanceTable[1].append(6.0)
+    distanceTable[1].append(4.8)
+    distanceTable[1].append(1.6)
+    distanceTable[1].append(2.8)
+    distanceTable[1].append(4.8)
+
+    distanceTable[1].append(6.3)
+    distanceTable[1].append(7.3)
+    distanceTable[1].append(5.3)
+    distanceTable[1].append(4.8)
+    distanceTable[1].append(3.0)
+    distanceTable[1].append(4.6)
+    distanceTable[1].append(4.5)
+    distanceTable[1].append(7.4)
+    distanceTable[1].append(6.0)
+
+    distanceTable[1].append(5.0)
+    distanceTable[1].append(4.8)
+    distanceTable[1].append(9.5)
+    distanceTable[1].append(10.9)
+    distanceTable[1].append(8.3)
+    distanceTable[1].append(6.9)
+    distanceTable[1].append(10.0)
+    distanceTable[1].append(4.4)
+    distanceTable[1].append(13.0)
+
+    for elem in distanceTable:
+        print(elem)
+
     return table
 
 def read(table):
-    temp = " "
-    unfilteredGraphData = readFile(temp, table)
+    unfilteredGraphData = readFile(table)
     print(unfilteredGraphData)
-    ###hardcode values in

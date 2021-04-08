@@ -1,41 +1,42 @@
 from Algorithm import PackageModel
 
-class implementation(PackageModel.Package):
-    def __init__(self):
-        self.size = 80                                  #set the initial size of the table
-        self.table = []                                 #then initialize the table itself
-        for i in range(self.size):                      #initialize each cell within the table
-            self.table.append([])                       #add lists to each cell within the table
 
-    def hashFunction(self, id, tableSize):           #takes the item, gets the integer value and
-        return hash(id) % tableSize                  #finds the index of where it ought to be
+class hashTable(PackageModel.Package):
+    def __init__(self):
+        self.size = 50  # set the initial size of the table
+        self.table = []  # then initialize the table itself
+        for i in range(self.size):  # initialize each cell within the table
+            self.table.append([])  # add lists to each cell within the table
+
+    def hashFunction(self, id, tableSize):  # takes the item, gets the integer value and
+        return hash(id) % tableSize  # finds the index of where it ought to be
 
     def insert(self, numberOfItems, item):
-        index = self.hashFunction(item.packageID, 80)  #get the index of where the item will be placed
-        positionList = self.table[index]                #get the list of the index
+        index = self.hashFunction(item.packageID, 50)  # get the index of where the item will be placed
+        positionList = self.table[index]  # get the list of the index
 
         isItemInList = self.update(item)
-        if(isItemInList == False):
-            keyValue = [numberOfItems, item]            #create the new entry
-            positionList.append(keyValue)               #now add it to the end of the list
+        if isItemInList == False:
+            keyValue = [numberOfItems, item]  # create the new entry
+            positionList.append(keyValue)  # now add it to the end of the list
 
     def update(self, item):
         found = False
-        index = self.hashFunction(item, 80)             #find the location in the list of lists
-        positionList = self.table[index]                #obtain the list in the given index
+        index = self.hashFunction(item, 50)  # find the location in the list of lists
+        positionList = self.table[index]  # obtain the list in the given index
 
         i = 0
-        while i < len(positionList)-1:                  #iterate thru the list if items exist
-            if(positionList[i] == item):
-                self.table[i+1] = item                  #overwrite the old entry
+        while i < len(positionList) - 1:  # iterate thru the list if items exist
+            if positionList[i] == item:
+                self.table[i + 1] = item  # overwrite the old entry
                 found = True
         return found
 
     def lookup(self, key):
-        index = self.hashFunction(key, 80)              #grab the hash value for the index
-        positionList = self.table[index]                #then retrieve the list at that index
+        index = self.hashFunction(key, 50)  # grab the hash value for the index
+        positionList = self.table[index]  # then retrieve the list at that index
 
         for i in positionList:
-            if(i[0] == key):
+            if i[0] == key:
                 return i[1]
-        return None                                     #otherwise return null
+        return None  # otherwise return null

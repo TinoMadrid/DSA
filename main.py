@@ -8,8 +8,9 @@ from IO import readInput
 from Algorithm import hashTable
 
 if __name__ == '__main__':
-    testImplement = hashTable.implementation()
-    readInput.read(testImplement)
+    testHash = hashTable.hashTable()
 
-    print(testImplement.table)
-    print(testImplement.lookup(0))
+    readInput.read(testHash)
+
+    #print(testHash.table)
+    #print(testHash.lookup(0))
