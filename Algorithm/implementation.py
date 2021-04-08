@@ -1,20 +1,17 @@
 from Algorithm import PackageModel
 
-count = 0  # keeps track of the entries and uses it as key
-
-
 class implementation(PackageModel.Package):
     def __init__(self):
-        self.size = 50                                  #set the initial size of the table
+        self.size = 80                                  #set the initial size of the table
         self.table = []                                 #then initialize the table itself
         for i in range(self.size):                      #initialize each cell within the table
             self.table.append([])                       #add lists to each cell within the table
 
-    def hashFunction(self, count, tableSize):           #takes the item, gets the integer value and
-        return hash(count) % tableSize                  #finds the index of where it ought to be
+    def hashFunction(self, id, tableSize):           #takes the item, gets the integer value and
+        return hash(id) % tableSize                  #finds the index of where it ought to be
 
     def insert(self, numberOfItems, item):
-        index = self.hashFunction(count, 50)            #get the index of where the item will be placed
+        index = self.hashFunction(item.packageID, 80)  #get the index of where the item will be placed
         positionList = self.table[index]                #get the list of the index
 
         isItemInList = self.update(item)
@@ -24,7 +21,7 @@ class implementation(PackageModel.Package):
 
     def update(self, item):
         found = False
-        index = self.hashFunction(item, 50)             #find the location in the list of lists
+        index = self.hashFunction(item, 80)             #find the location in the list of lists
         positionList = self.table[index]                #obtain the list in the given index
 
         i = 0
@@ -35,7 +32,7 @@ class implementation(PackageModel.Package):
         return found
 
     def lookup(self, key):
-        index = self.hashFunction(key, 50)              #grab the hash value for the index
+        index = self.hashFunction(key, 80)              #grab the hash value for the index
         positionList = self.table[index]                #then retrieve the list at that index
 
         for i in positionList:
