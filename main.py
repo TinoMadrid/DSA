@@ -5,11 +5,10 @@
 ##############################################################################
 ##############################################################################
 from IO import readInput
-from Algorithm import implementation
+from Algorithm import hashTable
 
 if __name__ == '__main__':
-    count = 0
-    testImplement = implementation.implementation()
+    testImplement = hashTable.implementation()
     readInput.read(testImplement)
 
     print(testImplement.table)
