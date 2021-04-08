@@ -11,6 +11,3 @@ if __name__ == '__main__':
     testHash = hashTable.hashTable()
 
     readInput.read(testHash)
-
-    #print(testHash.table)
-    #print(testHash.lookup(0))

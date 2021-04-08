@@ -95,6 +95,7 @@ def readFile(table):
 
     ############################################################################################################
     distanceTable = [[] for i in range(27)]
+    addressTable = [[] for i in range(27)]
 
     distanceTable[0].append(0.0)
     distanceTable[0].append(7.2)
@@ -181,9 +182,41 @@ def readFile(table):
     distanceTable[24].extend((5.0,2.4,10.0,6.1,6.4,4.2,5.9,11.7,9.5,9.5,4.8,4.9,5.2,9.5,7.2,6.3,5.9,11.1,4.0,5.6,8.5,2.8,3.4,1.7,5.4,0.0,7.0,1.3))
     distanceTable[25].extend((4.4,2.8,10.1,5.4,3.5,5.1,6.2,2.8,3.2,11.0,3.7,2.8,6.4,6.5,5.7,6.2,5.1,4.3,1.8,6.0,7.9,6.8,10.6,7.0,0.0,8.3))
     distanceTable[26].extend((3.6,13.0,7.4,10.1,5.5,7.2,14.2,10.7,14.1,6.0,6.8,6.4,14.1,10.5,8.8,8.4,13.6,5.2,6.9,13.1,4.1,4.7,3.1,7.8,1.3,8.3,0.0))
+    ############################################################################################################
+    addressTable[0].extend(("Western Governors University 4001 South 700 East(84107)"," Western Governors University 4001 South 700 East"," International Peace Gardens 1060 Dalton Ave S"," Sugar House Park 1330 2100 S"," Taylorsville-Bennion Heritage City Gov Off 1488 4800 S"," Salt Lake City Division of Health Services 177 W Price Ave"," South Salt Lake Public Works 195 W Oakland Ave"," Salt Lake City Streets and Sanitation 2010 W 500 S"," Deker Lake 2300 Parkway Blvd"," Salt Lake City Ottinger Hall 233 Canyon Rd"," Columbus Library 2530 S 500 E"," Taylorsville City Hall 2600 Taylorsville Blvd"," South Salt Lake Police 2835 Main St"," Council Hall 300 State St"," Redwood Park 3060 Lester St"," Salt Lake County Mental Health 3148 S 1100 W"," Salt Lake County/United Police Dept 3365 S 900 W"," West Valley Prosecutor 3575 W Valley Central Sta bus Loop"," Housing Auth. of Salt Lake County 3595 Main St"," Utah DMV Administrative Office 380 W 2880 S"," Third District Juvenile Court 410 S State St"," Cottonwood Regional Softball Complex 4300 S 1300 E"," Holiday City Office 4580 S 2300 E"," Murray City Museum 5025 State St"," Valley Regional Softball Complex 5100 South 2700 West"," City Center of Rock Springs 5383 South 900 East #104"," Rice Terrace Pavilion Park 600 E 900"," South Wheeler Historic Farm 6351 South 900 East"))
+    addressTable[1].extend(("International Peace Gardens 1060 Dalton Ave S(84104)"," Western Governors University 4001 South 700 East"," International Peace Gardens 1060 Dalton Ave S"," Sugar House Park 1330 2100 S"," Taylorsville-Bennion Heritage City Gov Off 1488 4800 S"," Salt Lake City Division of Health Services 177 W Price Ave"," South Salt Lake Public Works 195 W Oakland Ave"," Salt Lake City Streets and Sanitation 2010 W 500 S"," Deker Lake 2300 Parkway Blvd"," Salt Lake City Ottinger Hall 233 Canyon Rd"," Columbus Library 2530 S 500 E"," Taylorsville City Hall 2600 Taylorsville Blvd"," South Salt Lake Police 2835 Main St"," Council Hall 300 State St"," Redwood Park 3060 Lester St"," Salt Lake County Mental Health 3148 S 1100 W"," Salt Lake County/United Police Dept 3365 S 900 W"," West Valley Prosecutor 3575 W Valley Central Sta bus Loop"," Housing Auth. of Salt Lake County 3595 Main St"," Utah DMV Administrative Office 380 W 2880 S"," Third District Juvenile Court 410 S State St"," Cottonwood Regional Softball Complex 4300 S 1300 E"," Holiday City Office 4580 S 2300 E"," Murray City Museum 5025 State St"," Valley Regional Softball Complex 5100 South 2700 West"," City Center of Rock Springs 5383 South 900 East #104"," Rice Terrace Pavilion Park 600 E 900"," South Wheeler Historic Farm 6351 South 900 East"))
+    addressTable[2].extend(("Sugar House Park 1330 2100 S(84106)"," Western Governors University 4001 South 700 East"," International Peace Gardens 1060 Dalton Ave S"," Sugar House Park 1330 2100 S"," Taylorsville-Bennion Heritage City Gov Off 1488 4800 S"," Salt Lake City Division of Health Services 177 W Price Ave"," South Salt Lake Public Works 195 W Oakland Ave"," Salt Lake City Streets and Sanitation 2010 W 500 S"," Deker Lake 2300 Parkway Blvd"," Salt Lake City Ottinger Hall 233 Canyon Rd"," Columbus Library 2530 S 500 E"," Taylorsville City Hall 2600 Taylorsville Blvd"," South Salt Lake Police 2835 Main St"," Council Hall 300 State St"," Redwood Park 3060 Lester St"," Salt Lake County Mental Health 3148 S 1100 W"," Salt Lake County/United Police Dept 3365 S 900 W"," West Valley Prosecutor 3575 W Valley Central Sta bus Loop"," Housing Auth. of Salt Lake County 3595 Main St"," Utah DMV Administrative Office 380 W 2880 S"," Third District Juvenile Court 410 S State St"," Cottonwood Regional Softball Complex 4300 S 1300 E"," Holiday City Office 4580 S 2300 E"," Murray City Museum 5025 State St"," Valley Regional Softball Complex 5100 South 2700 West"," City Center of Rock Springs 5383 South 900 East #104"," Rice Terrace Pavilion Park 600 E 900"," South Wheeler Historic Farm 6351 South 900 East"))
+    addressTable[3].extend(("Taylorsville-Bennion Heritage City Gov Off 1488 4800 S(84123)"," Western Governors University 4001 South 700 East"," International Peace Gardens 1060 Dalton Ave S"," Sugar House Park 1330 2100 S"," Taylorsville-Bennion Heritage City Gov Off 1488 4800 S"," Salt Lake City Division of Health Services 177 W Price Ave"," South Salt Lake Public Works 195 W Oakland Ave"," Salt Lake City Streets and Sanitation 2010 W 500 S"," Deker Lake 2300 Parkway Blvd"," Salt Lake City Ottinger Hall 233 Canyon Rd"," Columbus Library 2530 S 500 E"," Taylorsville City Hall 2600 Taylorsville Blvd"," South Salt Lake Police 2835 Main St"," Council Hall 300 State St"," Redwood Park 3060 Lester St"," Salt Lake County Mental Health 3148 S 1100 W"," Salt Lake County/United Police Dept 3365 S 900 W"," West Valley Prosecutor 3575 W Valley Central Sta bus Loop"," Housing Auth. of Salt Lake County 3595 Main St"," Utah DMV Administrative Office 380 W 2880 S"," Third District Juvenile Court 410 S State St"," Cottonwood Regional Softball Complex 4300 S 1300 E"," Holiday City Office 4580 S 2300 E"," Murray City Museum 5025 State St"," Valley Regional Softball Complex 5100 South 2700 West"," City Center of Rock Springs 5383 South 900 East #104"," Rice Terrace Pavilion Park 600 E 900"," South Wheeler Historic Farm 6351 South 900 East"))
+    addressTable[4].extend(("Salt Lake City Division of Health Services 177 W Price Ave(84115)"," Western Governors University 4001 South 700 East"," International Peace Gardens 1060 Dalton Ave S"," Sugar House Park 1330 2100 S"," Taylorsville-Bennion Heritage City Gov Off 1488 4800 S"," Salt Lake City Division of Health Services 177 W Price Ave"," South Salt Lake Public Works 195 W Oakland Ave"," Salt Lake City Streets and Sanitation 2010 W 500 S"," Deker Lake 2300 Parkway Blvd"," Salt Lake City Ottinger Hall 233 Canyon Rd"," Columbus Library 2530 S 500 E"," Taylorsville City Hall 2600 Taylorsville Blvd"," South Salt Lake Police 2835 Main St"," Council Hall 300 State St"," Redwood Park 3060 Lester St"," Salt Lake County Mental Health 3148 S 1100 W"," Salt Lake County/United Police Dept 3365 S 900 W"," West Valley Prosecutor 3575 W Valley Central Sta bus Loop"," Housing Auth. of Salt Lake County 3595 Main St"," Utah DMV Administrative Office 380 W 2880 S"," Third District Juvenile Court 410 S State St"," Cottonwood Regional Softball Complex 4300 S 1300 E"," Holiday City Office 4580 S 2300 E"," Murray City Museum 5025 State St"," Valley Regional Softball Complex 5100 South 2700 West"," City Center of Rock Springs 5383 South 900 East #104"," Rice Terrace Pavilion Park 600 E 900"," South Wheeler Historic Farm 6351 South 900 East"))
+    addressTable[5].extend(())
+    addressTable[6].extend(())
+    addressTable[7].extend(())
+    addressTable[8].extend(())
 
-    for elem in distanceTable:
-        print(elem)
+    addressTable[9].extend(())
+    addressTable[10].extend(())
+    addressTable[11].extend(())
+    addressTable[12].extend(())
+    addressTable[13].extend(())
+    addressTable[14].extend(())
+    addressTable[15].extend(())
+    addressTable[16].extend(())
+    addressTable[17].extend(())
+    addressTable[18].extend(())
+
+
+    addressTable[19].extend(())
+    addressTable[20].extend(())
+    addressTable[21].extend(())
+    addressTable[22].extend(())
+    addressTable[23].extend(())
+    addressTable[24].extend(())
+    addressTable[25].extend(())
+    addressTable[26].extend(())
+    addressTable[27].extend(())
+
+
+
 
     return table
 
