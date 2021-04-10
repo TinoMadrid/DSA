@@ -209,7 +209,7 @@ def readFile(table):
     distanceTable[23].extend((
                              6.4, 6.9, 9.7, 0.6, 6.0, 9.0, 8.2, 4.2, 11.5, 7.8, 0.4, 6.9, 11.5, 4.4, 4.8, 5.6, 7.5, 5.5,
                              6.5, 11.4, 6.4, 7.9, 4.5, 0.0, 5.4, 10.6, 7.8))
-    distanceTable[24].extend((5.0, 2.4, 10.0, 6.1, 6.4, 4.2, 5.9, 11.7, 9.5, 9.5, 4.8, 4.9, 5.2, 9.5, 7.2, 6.3, 5.9,
+    distanceTable[24].extend((2.4, 10.0, 6.1, 6.4, 4.2, 5.9, 11.7, 9.5, 9.5, 4.8, 4.9, 5.2, 9.5, 7.2, 6.3, 5.9,
                               11.1, 4.0, 5.6, 8.5, 2.8, 3.4, 1.7, 5.4, 0.0, 7.0, 1.3))
     distanceTable[25].extend((
                              5.0,4.4, 2.8, 10.1, 5.4, 3.5, 5.1, 6.2, 2.8, 3.2, 11.0, 3.7, 2.8, 6.4, 6.5, 5.7, 6.2, 5.1, 4.3,
@@ -814,7 +814,7 @@ def readFile(table):
 
 def read(table):
     distanceData, addressData = readFile(table)
-    distanceValue = address_lookup("Rice Terrace Pavilion Park 600 E 900 South(84105)",
+    distanceValue = address_lookup("City Center of Rock Springs 5383 S 900 East #104(84117)",
                                    " Western Governors University 4001 South 700 East", addressData, distanceData)
     print(distanceValue)
 
@@ -824,7 +824,6 @@ def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
     for begin in addressTable:
         if begin[0] == fromLocation:                        # if the first index element is the origin
             matchingCoordinates = [(indice, addressTable[indice].index(toLocation)) for indice in range(len(addressTable)) if toLocation in addressTable[indice]]
-            print(tracker)
-            print(distanceTable[tracker][matchingCoordinates[0].index(1)])
-            return distanceTable[tracker][matchingCoordinates[0].index(1)]
+            firstNum, secondNum = matchingCoordinates[0]
+            return distanceTable[tracker][secondNum-1]
         tracker += 1
