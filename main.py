@@ -4,10 +4,9 @@
 #(self, packageID, address, city, state, zip, deliveryDeadline, wgt, specialNotes):
 ##############################################################################
 ##############################################################################
+from Algorithm.hashImplementation import hashTable
 from IO import readInput
-from Algorithm import hashTable
 
 if __name__ == '__main__':
-    testHash = hashTable.hashTable()
-
+    testHash = hashTable()
     readInput.read(testHash)

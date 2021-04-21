@@ -1,9 +1,7 @@
-import csv
-from pathlib import Path
 from Algorithm.PackageModel import Package
 
 
-def readFile(table):
+def readFile(packageTable):
     newPck1 = Package(1, "195 W Oakland Ave", "Salt Lake City", "UT", 84115, "###", 21, None)
     newPck2 = Package(2, "2530 S 500 E", "Salt Lake City", "UT", 84106, "EOD", 44, None)
     newPck3 = Package(3, "233 Canyon Rd", "Salt Lake City", "UT", 84103, "EOD", 2, "Can only be on truck 2")
@@ -52,49 +50,49 @@ def readFile(table):
     newPck39 = Package(39, "2010 W 500 S", "Salt Lake City", "UT", 84104, "EOD", 9, None)
     newPck40 = Package(40, "380 W 2880 S", "Salt Lake City", "UT", 84115, "10:30 AM", 45, None)
 
-    table.insert(newPck1.packageID, newPck1)
-    table.insert(newPck2.packageID, newPck2)
-    table.insert(newPck3.packageID, newPck3)
-    table.insert(newPck4.packageID, newPck4)
-    table.insert(newPck5.packageID, newPck5)
-    table.insert(newPck6.packageID, newPck6)
-    table.insert(newPck7.packageID, newPck7)
-    table.insert(newPck8.packageID, newPck8)
-    table.insert(newPck9.packageID, newPck9)
-    table.insert(newPck10.packageID, newPck10)
+    packageTable.insert(newPck1.packageID, newPck1)
+    packageTable.insert(newPck2.packageID, newPck2)
+    packageTable.insert(newPck3.packageID, newPck3)
+    packageTable.insert(newPck4.packageID, newPck4)
+    packageTable.insert(newPck5.packageID, newPck5)
+    packageTable.insert(newPck6.packageID, newPck6)
+    packageTable.insert(newPck7.packageID, newPck7)
+    packageTable.insert(newPck8.packageID, newPck8)
+    packageTable.insert(newPck9.packageID, newPck9)
+    packageTable.insert(newPck10.packageID, newPck10)
 
-    table.insert(newPck11.packageID, newPck11)
-    table.insert(newPck12.packageID, newPck12)
-    table.insert(newPck13.packageID, newPck13)
-    table.insert(newPck14.packageID, newPck14)
-    table.insert(newPck15.packageID, newPck15)
-    table.insert(newPck16.packageID, newPck16)
-    table.insert(newPck17.packageID, newPck17)
-    table.insert(newPck18.packageID, newPck18)
-    table.insert(newPck19.packageID, newPck19)
-    table.insert(newPck20.packageID, newPck20)
+    packageTable.insert(newPck11.packageID, newPck11)
+    packageTable.insert(newPck12.packageID, newPck12)
+    packageTable.insert(newPck13.packageID, newPck13)
+    packageTable.insert(newPck14.packageID, newPck14)
+    packageTable.insert(newPck15.packageID, newPck15)
+    packageTable.insert(newPck16.packageID, newPck16)
+    packageTable.insert(newPck17.packageID, newPck17)
+    packageTable.insert(newPck18.packageID, newPck18)
+    packageTable.insert(newPck19.packageID, newPck19)
+    packageTable.insert(newPck20.packageID, newPck20)
 
-    table.insert(newPck21.packageID, newPck21)
-    table.insert(newPck22.packageID, newPck22)
-    table.insert(newPck23.packageID, newPck23)
-    table.insert(newPck24.packageID, newPck24)
-    table.insert(newPck25.packageID, newPck25)
-    table.insert(newPck26.packageID, newPck26)
-    table.insert(newPck27.packageID, newPck27)
-    table.insert(newPck28.packageID, newPck28)
-    table.insert(newPck29.packageID, newPck29)
-    table.insert(newPck30.packageID, newPck30)
+    packageTable.insert(newPck21.packageID, newPck21)
+    packageTable.insert(newPck22.packageID, newPck22)
+    packageTable.insert(newPck23.packageID, newPck23)
+    packageTable.insert(newPck24.packageID, newPck24)
+    packageTable.insert(newPck25.packageID, newPck25)
+    packageTable.insert(newPck26.packageID, newPck26)
+    packageTable.insert(newPck27.packageID, newPck27)
+    packageTable.insert(newPck28.packageID, newPck28)
+    packageTable.insert(newPck29.packageID, newPck29)
+    packageTable.insert(newPck30.packageID, newPck30)
 
-    table.insert(newPck31.packageID, newPck31)
-    table.insert(newPck32.packageID, newPck32)
-    table.insert(newPck33.packageID, newPck33)
-    table.insert(newPck34.packageID, newPck34)
-    table.insert(newPck35.packageID, newPck35)
-    table.insert(newPck36.packageID, newPck36)
-    table.insert(newPck37.packageID, newPck37)
-    table.insert(newPck38.packageID, newPck38)
-    table.insert(newPck39.packageID, newPck39)
-    table.insert(newPck40.packageID, newPck40)
+    packageTable.insert(newPck31.packageID, newPck31)
+    packageTable.insert(newPck32.packageID, newPck32)
+    packageTable.insert(newPck33.packageID, newPck33)
+    packageTable.insert(newPck34.packageID, newPck34)
+    packageTable.insert(newPck35.packageID, newPck35)
+    packageTable.insert(newPck36.packageID, newPck36)
+    packageTable.insert(newPck37.packageID, newPck37)
+    packageTable.insert(newPck38.packageID, newPck38)
+    packageTable.insert(newPck39.packageID, newPck39)
+    packageTable.insert(newPck40.packageID, newPck40)
 
     ############################################################################################################
     distanceTable = [[] for i in range(27)]
@@ -163,8 +161,8 @@ def readFile(table):
     distanceTable[2].extend((3.8, 7.1, 0.0, 9.2, 4.4, 2.8, 8.6, 6.3, 5.3, 1.6, 10.4, 3.0, 5.3, 6.5, 5.6, 5.8, 5.7, 4.1,
                              3.6, 4.3, 3.3, 5.0, 6.1, 9.7, 6.1, 2.8, 7.4))
     distanceTable[3].extend((
-                            11.0, 6.4, 9.2, 0.0, 5.6, 6.9, 8.6, 4.0, 11.1, 7.3, 1.0, 6.4, 11.1, 3.9, 4.3, 4.4, 7.2, 5.3,
-                            6.0, 10.6, 5.9, 7.4, 4.7, 0.6, 6.4, 10.1, 10.1))
+        11.0, 6.4, 9.2, 0.0, 5.6, 6.9, 8.6, 4.0, 11.1, 7.3, 1.0, 6.4, 11.1, 3.9, 4.3, 4.4, 7.2, 5.3,
+        6.0, 10.6, 5.9, 7.4, 4.7, 0.6, 6.4, 10.1, 10.1))
     distanceTable[4].extend((2.2, 6.0, 4.4, 5.6, 0.0, 1.9, 7.9, 5.1, 7.5, 2.6, 6.5, 1.5, 7.5, 3.2, 2.4, 2.7, 1.4, 0.5,
                              1.7, 6.5, 3.2, 5.2, 2.5, 6.0, 4.2, 5.4, 5.5))
     distanceTable[5].extend((3.5, 4.8, 2.8, 6.9, 1.9, 0.0, 6.3, 4.3, 4.5, 1.5, 8.7, 0.8, 4.5, 3.9, 3.0, 3.8, 5.7, 1.9,
@@ -182,8 +180,8 @@ def readFile(table):
     distanceTable[11].extend((3.2, 5.3, 3.0, 6.4, 1.5, 0.8, 6.9, 4.8, 4.7, 1.1, 7.3, 0.0, 4.7, 3.5, 2.6, 2.9, 6.3, 1.2,
                               1.0, 3.7, 4.1, 6.2, 3.4, 6.9, 5.2, 3.7, 6.4))
     distanceTable[12].extend((
-                             7.6, 4.8, 5.3, 11.1, 7.5, 4.5, 4.2, 7.7, 0.6, 5.1, 12.0, 4.7, 0.0, 7.3, 7.8, 6.6, 7.2, 5.9,
-                             5.4, 1.0, 8.5, 10.3, 7.8, 11.5, 9.5, 2.8, 14.1))
+        7.6, 4.8, 5.3, 11.1, 7.5, 4.5, 4.2, 7.7, 0.6, 5.1, 12.0, 4.7, 0.0, 7.3, 7.8, 6.6, 7.2, 5.9,
+        5.4, 1.0, 8.5, 10.3, 7.8, 11.5, 9.5, 2.8, 14.1))
     distanceTable[13].extend((5.2, 3.0, 6.5, 3.9, 3.2, 3.9, 4.2, 1.6, 7.6, 4.6, 4.9, 3.5, 7.3, 0.0, 1.3, 1.5, 4.0, 3.2,
                               3.0, 6.9, 6.2, 8.2, 5.5, 4.4, 7.2, 6.4, 10.5))
     distanceTable[14].extend((4.4, 4.6, 5.6, 4.3, 2.4, 3.0, 8.0, 3.3, 7.8, 3.7, 5.2, 2.6, 7.8, 1.3, 0.0, 0.6, 6.4, 2.4,
@@ -197,23 +195,23 @@ def readFile(table):
     distanceTable[18].extend((3.6, 5.0, 3.6, 6.0, 1.7, 1.1, 6.6, 4.6, 5.4, 1.8, 6.9, 1.0, 5.4, 3.0, 2.2, 1.7, 6.1, 1.6,
                               0.0, 4.4, 4.6, 6.6, 3.9, 6.5, 5.6, 4.3, 6.9))
     distanceTable[19].extend((
-                             6.5, 4.8, 4.3, 10.6, 6.5, 3.5, 3.2, 6.7, 1.0, 4.1, 11.5, 3.7, 1.0, 6.9, 6.8, 6.4, 7.2, 4.9,
-                             4.4, 0.0, 7.5, 9.3, 6.8, 11.4, 8.5, 1.8, 13.1))
+        6.5, 4.8, 4.3, 10.6, 6.5, 3.5, 3.2, 6.7, 1.0, 4.1, 11.5, 3.7, 1.0, 6.9, 6.8, 6.4, 7.2, 4.9,
+        4.4, 0.0, 7.5, 9.3, 6.8, 11.4, 8.5, 1.8, 13.1))
     distanceTable[20].extend((
-                             1.9, 9.5, 3.3, 5.9, 3.2, 4.9, 11.2, 8.1, 8.5, 3.8, 6.9, 4.1, 8.5, 6.2, 5.3, 4.9, 10.6, 3.0,
-                             4.6, 7.5, 0.0, 2.0, 2.9, 6.4, 2.8, 6.0, 4.1))
+        1.9, 9.5, 3.3, 5.9, 3.2, 4.9, 11.2, 8.1, 8.5, 3.8, 6.9, 4.1, 8.5, 6.2, 5.3, 4.9, 10.6, 3.0,
+        4.6, 7.5, 0.0, 2.0, 2.9, 6.4, 2.8, 6.0, 4.1))
     distanceTable[21].extend((3.4, 10.9, 5.0, 7.4, 5.2, 6.9, 12.7, 10.4, 10.3, 5.8, 8.3, 6.2, 10.3, 8.2, 7.4, 6.9, 12.0,
                               5.0, 6.6, 9.3, 2.0, 0.0, 4.4, 7.9, 3.4, 7.9, 4.7))
     distanceTable[22].extend((2.4, 8.3, 6.1, 4.7, 2.5, 4.2, 10.0, 7.8, 7.8, 4.3, 4.1, 3.4, 7.8, 5.5, 4.6, 4.2, 9.4, 2.3,
                               3.9, 6.8, 2.9, 4.4, 0.0, 4.5, 1.7, 6.8, 3.1))
     distanceTable[23].extend((
-                             6.4, 6.9, 9.7, 0.6, 6.0, 9.0, 8.2, 4.2, 11.5, 7.8, 0.4, 6.9, 11.5, 4.4, 4.8, 5.6, 7.5, 5.5,
-                             6.5, 11.4, 6.4, 7.9, 4.5, 0.0, 5.4, 10.6, 7.8))
+        6.4, 6.9, 9.7, 0.6, 6.0, 9.0, 8.2, 4.2, 11.5, 7.8, 0.4, 6.9, 11.5, 4.4, 4.8, 5.6, 7.5, 5.5,
+        6.5, 11.4, 6.4, 7.9, 4.5, 0.0, 5.4, 10.6, 7.8))
     distanceTable[24].extend((2.4, 10.0, 6.1, 6.4, 4.2, 5.9, 11.7, 9.5, 9.5, 4.8, 4.9, 5.2, 9.5, 7.2, 6.3, 5.9,
                               11.1, 4.0, 5.6, 8.5, 2.8, 3.4, 1.7, 5.4, 0.0, 7.0, 1.3))
     distanceTable[25].extend((
-                             5.0,4.4, 2.8, 10.1, 5.4, 3.5, 5.1, 6.2, 2.8, 3.2, 11.0, 3.7, 2.8, 6.4, 6.5, 5.7, 6.2, 5.1, 4.3,
-                             1.8, 6.0, 7.9, 6.8, 10.6, 7.0, 0.0, 8.3))
+        5.0, 4.4, 2.8, 10.1, 5.4, 3.5, 5.1, 6.2, 2.8, 3.2, 11.0, 3.7, 2.8, 6.4, 6.5, 5.7, 6.2, 5.1, 4.3,
+        1.8, 6.0, 7.9, 6.8, 10.6, 7.0, 0.0, 8.3))
     distanceTable[26].extend((3.6, 13.0, 7.4, 10.1, 5.5, 7.2, 14.2, 10.7, 14.1, 6.0, 6.8, 6.4, 14.1, 10.5, 8.8, 8.4,
                               13.6, 5.2, 6.9, 13.1, 4.1, 4.7, 3.1, 7.8, 1.3, 8.3, 0.0))
     ############################################################################################################
@@ -809,21 +807,70 @@ def readFile(table):
                              " Rice Terrace Pavilion Park 600 E 900",
                              " South Wheeler Historic Farm 6351 South 900 East"))
 
-    return distanceTable, addressTable
+
+    return distanceTable, addressTable, packageTable
 
 
 def read(table):
-    distanceData, addressData = readFile(table)
-    distanceValue = address_lookup("City Center of Rock Springs 5383 S 900 East #104(84117)",
-                                   " Western Governors University 4001 South 700 East", addressData, distanceData)
-    print(distanceValue)
+    distanceData, addressData, packageData = readFile(table)
 
+    truckOne = []
+    truckTwo = []
+
+    loadTrucks(truckOne, truckTwo, packageData)
 
 def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
     tracker = 0
     for begin in addressTable:
-        if begin[0] == fromLocation:                        # if the first index element is the origin
-            matchingCoordinates = [(indice, addressTable[indice].index(toLocation)) for indice in range(len(addressTable)) if toLocation in addressTable[indice]]
+        if begin[0] == fromLocation:
+            matchingCoordinates = [(indice, addressTable[indice].index(toLocation)) for indice in
+                                   range(len(addressTable)) if toLocation in addressTable[indice]]
             firstNum, secondNum = matchingCoordinates[0]
-            return distanceTable[tracker][secondNum-1]
+            return distanceTable[tracker][secondNum - 1]
         tracker += 1
+
+
+def loadTrucks(truckOne, truckTwo, packageTable):
+    temp = packageTable.lookup(14)
+
+    for i in range(42):
+        placeholder = packageTable.lookup(i)
+        if placeholder is not None:
+            if (placeholder.specialNotes is not None):
+                if "truck 2" in placeholder.specialNotes:
+                    truckTwo.append(placeholder.packageID)
+                elif "Must be delivered with" in placeholder.specialNotes:
+                    result = [int(j) for j in placeholder.specialNotes.split() if j.isdigit()]
+                    if(result in truckOne):
+                        res = [int(j) for j in placeholder.specialNotes.split() if j.isdigit()]
+                        object0 = packageTable.lookup(res[0])
+                        object1 = packageTable.lookup(res[1])
+                        truckOne.append(object0.packageID)
+                        truckOne.append(object1.packageID)
+                        truckOne.append(placeholder.packageID)
+                    else:
+                        res = [int(j) for j in placeholder.specialNotes.split() if j.isdigit()]
+                        object0 = packageTable.lookup(res[0])
+                        object1 = packageTable.lookup(res[1])
+                        truckTwo.append(placeholder.packageID)
+                        truckTwo.append(object0.packageID)
+                        truckTwo.append(object1.packageID)
+            if(len(truckOne) > len(truckTwo)):
+                truckTwo.append(placeholder.packageID)
+            else:
+                truckOne.append(placeholder.packageID)
+    resultTruckOne = []
+    resultTruckTwo = []
+    [resultTruckTwo.append(x) for x in truckTwo if x not in resultTruckTwo]
+    [resultTruckOne.append(x) for x in truckOne if x not in resultTruckTwo or x not in truckOne]
+
+    #while(len(truckOne) > len(truckTwo)):
+
+
+    print(resultTruckOne)
+    print(resultTruckTwo)
+
+                ##loop with look up function
+                ##dynamic resize
+                ##keep a list of packageIDs in trucks
+                ##avoid duplicate objects
