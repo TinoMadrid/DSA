@@ -807,17 +807,18 @@ def readFile(packageTable):
                              " Rice Terrace Pavilion Park 600 E 900",
                              " South Wheeler Historic Farm 6351 South 900 East"))
 
-
     return distanceTable, addressTable, packageTable
 
 
 def read(table):
-    distanceData, addressData, packageData = readFile(table)
+    distanceTable, addressTable, packageTable = readFile(table)
 
     truckOne = []
     truckTwo = []
 
-    loadTrucks(truckOne, truckTwo, packageData)
+    loadedTruckOne, loadedTruckTwo = loadTrucks(truckOne, truckTwo, packageTable)
+    return loadedTruckOne, loadedTruckTwo, distanceTable, addressTable, packageTable
+
 
 def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
     tracker = 0
@@ -831,8 +832,6 @@ def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
 
 
 def loadTrucks(truckOne, truckTwo, packageTable):
-    temp = packageTable.lookup(14)
-
     for i in range(42):
         placeholder = packageTable.lookup(i)
         if placeholder is not None:
@@ -841,7 +840,7 @@ def loadTrucks(truckOne, truckTwo, packageTable):
                     truckTwo.append(placeholder.packageID)
                 elif "Must be delivered with" in placeholder.specialNotes:
                     result = [int(j) for j in placeholder.specialNotes.split() if j.isdigit()]
-                    if(result in truckOne):
+                    if (result in truckOne):
                         res = [int(j) for j in placeholder.specialNotes.split() if j.isdigit()]
                         object0 = packageTable.lookup(res[0])
                         object1 = packageTable.lookup(res[1])
@@ -855,7 +854,7 @@ def loadTrucks(truckOne, truckTwo, packageTable):
                         truckTwo.append(placeholder.packageID)
                         truckTwo.append(object0.packageID)
                         truckTwo.append(object1.packageID)
-            if(len(truckOne) > len(truckTwo)):
+            if len(truckOne) > len(truckTwo):
                 truckTwo.append(placeholder.packageID)
             else:
                 truckOne.append(placeholder.packageID)
@@ -864,13 +863,9 @@ def loadTrucks(truckOne, truckTwo, packageTable):
     [resultTruckTwo.append(x) for x in truckTwo if x not in resultTruckTwo]
     [resultTruckOne.append(x) for x in truckOne if x not in resultTruckTwo or x not in truckOne]
 
-    #while(len(truckOne) > len(truckTwo)):
+    resultTruckOne.append(39)
+    resultTruckOne.append(35)
+    resultTruckTwo.remove(39)
+    resultTruckTwo.remove(35)
 
-
-    print(resultTruckOne)
-    print(resultTruckTwo)
-
-                ##loop with look up function
-                ##dynamic resize
-                ##keep a list of packageIDs in trucks
-                ##avoid duplicate objects
+    return resultTruckOne, resultTruckTwo
