@@ -32,16 +32,27 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable):
     """
     visitedVertices = []
     calculatedDistances = []
-    for selectedPackage in loadedTruck:
-        visitedVertices.append(selectedPackage)
-        loadedTruck.remove(selectedPackage)
-        for potentialNextDestination in loadedTruck:
-            selectedID = packageTable.lookup(selectedPackage)
-            potentialID = packageTable.lookup(potentialNextDestination)
-            #potentialAddress = leaving off here and need to look match address in potentialNextDestination with address table, get the 2d indices and use that to retrieve the distance.
-            calculatedDistances.append(euclideanDistance(packageTable.lookup(selectedPackage), packageTable.lookup(potentialNextDestination)))
-        nextDistance = min(calculatedDistances)
-        minIndex = calculatedDistances.index(nextDistance)
+    totalDistanceTraveled = 0
+    i = 0
+    #timestamp packages for delivery deadlines (distance/speed for time variable (in control of when truck leaves), add timestamp to package table) can add field to null initialize
+    while(i < len(loadedTruck)):
+        for potentialNextDestinationID in loadedTruck:
+            if(i == len(loadedTruck)):
+                break
+            currentPosition = loadedTruck[-1] #last item in the truck is the current address
+            potentialPackage = packageTable.lookup(potentialNextDestinationID)
+            if potentialPackage is not None:
+                distance = readInput.address_lookup(currentPosition, potentialPackage.address, addressTable, distanceTable)
+                calculatedDistances.append(distance)
+            i+=1
+    #calculatedDistances = [x for x in calculatedDistances if x != 0]
+    print(calculatedDistances)
+    print(len(calculatedDistances))
+    print(len(loadedTruck))
+            #calculatedDistances.append(euclideanDistance(packageTable.lookup(selectedPackageID), packageTable.lookup(potentialNextDestinationID)))
+            #add truck address starting at hub then update the address as packages are delivered
+            #use loop that does min value search for package, when found remember package info
+
 
 if __name__ == '__main__':
     testHash = hashTable()

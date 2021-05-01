@@ -12,7 +12,8 @@ def readFile(packageTable):
     newPck7 = Package(7, "1330 2100 S", "Salt Lake City", "UT", 84106, "EOD", 8, None)
     newPck8 = Package(8, "300 State St", "Salt Lake City", "UT", 84103, "EOD", 9, None)
     newPck9 = Package(9, "300 State St", "Salt Lake City", "UT", 84103, "EOD", 2, "Wrong address listed")
-    newPck10 = Package(10, "600 E 900 South", "Salt Lake City", "UT", 84105, "EOD", 1, None)
+    #newPck10 = Package(10, "600 E 900 South", "Salt Lake City", "UT", 84105, "EOD", 1, None)
+    newPck10 = Package(10, "600 E 900", "Salt Lake City", "UT", 84105, "EOD", 1, None)
 
     newPck11 = Package(11, "2600 Taylorsville Blvd", "Salt Lake City", "UT", 84118, "EOD", 1, None)
     newPck12 = Package(12, "3575 W Valley Central Station bus Loop", "West Valley City", "UT", 84119, "EOD", 1, None)
@@ -227,7 +228,7 @@ def readFile(packageTable):
                             " Council Hall 300 State St", " Redwood Park 3060 Lester St",
                             " Salt Lake County Mental Health 3148 S 1100 W",
                             " Salt Lake County/United Police Dept 3365 S 900 W",
-                            " West Valley Prosecutor 3575 W Valley Central Sta bus Loop",
+                            " West Valley Prosecutor 3575 W Valley Central Station bus Loop",
                             " Housing Auth. of Salt Lake County 3595 Main St",
                             " Utah DMV Administrative Office 380 W 2880 S",
                             " Third District Juvenile Court 410 S State St",
@@ -824,11 +825,17 @@ def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
     tracker = 0
     for begin in addressTable:
         if begin[0] == fromLocation:
-            matchingCoordinates = [(indice, addressTable[indice].index(toLocation)) for indice in
-                                   range(len(addressTable)) if toLocation in addressTable[indice]]
-            firstNum, secondNum = matchingCoordinates[0]
-            return distanceTable[tracker][secondNum - 1]
+            #matchingCoordinates = [(indice, addressTable[indice].index(toLocation)) for indice in
+                                   #range(len(addressTable)) if toLocation in addressTable[indice]]
+            matchingCoordinates = []
+            for x in range(len(begin)-1):
+                if toLocation in addressTable[tracker][x]:
+                    matchingCoordinates.append(tracker)
+                    matchingCoordinates.append(x)
+            if len(matchingCoordinates) != 0:
+                return distanceTable[matchingCoordinates[0]][matchingCoordinates[1]]
         tracker += 1
+    return 0
 
 
 def loadTrucks(truckOne, truckTwo, packageTable):
@@ -867,5 +874,9 @@ def loadTrucks(truckOne, truckTwo, packageTable):
     resultTruckOne.append(35)
     resultTruckTwo.remove(39)
     resultTruckTwo.remove(35)
+
+    ##add the beginning addresses of the trucks
+    resultTruckOne.append("Western Governors University 4001 South 700 East(84107)")
+    resultTruckTwo.append("Western Governors University 4001 South 700 East(84107)")
 
     return resultTruckOne, resultTruckTwo
