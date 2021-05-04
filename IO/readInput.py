@@ -12,9 +12,8 @@ def readFile(packageTable):
     newPck7 = Package(7, "1330 2100 S", "Salt Lake City", "UT", 84106, "EOD", 8, None)
     newPck8 = Package(8, "300 State St", "Salt Lake City", "UT", 84103, "EOD", 9, None)
     newPck9 = Package(9, "300 State St", "Salt Lake City", "UT", 84103, "EOD", 2, "Wrong address listed")
-    #newPck10 = Package(10, "600 E 900 South", "Salt Lake City", "UT", 84105, "EOD", 1, None)
     newPck10 = Package(10, "600 E 900", "Salt Lake City", "UT", 84105, "EOD", 1, None)
-
+#
     newPck11 = Package(11, "2600 Taylorsville Blvd", "Salt Lake City", "UT", 84118, "EOD", 1, None)
     newPck12 = Package(12, "3575 W Valley Central Station bus Loop", "West Valley City", "UT", 84119, "EOD", 1, None)
     newPck13 = Package(13, "2010 W 500 S", "Salt Lake City", "UT", 84104, "###", 2, None)
@@ -828,11 +827,13 @@ def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
             #matchingCoordinates = [(indice, addressTable[indice].index(toLocation)) for indice in
                                    #range(len(addressTable)) if toLocation in addressTable[indice]]
             matchingCoordinates = []
-            for x in range(len(begin)-1):
+            for x in range(len(begin)):
                 if toLocation in addressTable[tracker][x]:
                     matchingCoordinates.append(tracker)
                     matchingCoordinates.append(x)
+                    break
             if len(matchingCoordinates) != 0:
+                if(matchingCoordinates[1] == 27): matchingCoordinates[1] = matchingCoordinates[1]-1
                 return distanceTable[matchingCoordinates[0]][matchingCoordinates[1]]
         tracker += 1
     return 0
