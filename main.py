@@ -33,29 +33,45 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable):
     visitedVertices = []
     calculatedDistances = []
     totalDistanceTraveled = 0
+    selectedPackageID = 0
     i = 0
-    #timestamp packages for delivery deadlines (distance/speed for time variable (in control of when truck leaves), add timestamp to package table) can add field to null initialize
-    while(i < len(loadedTruck)):
+    # timestamp packages for delivery deadlines (distance/speed for time variable (in control of when truck leaves), add timestamp to package table) can add field to null initialize
+    while i < len(loadedTruck):
         for potentialNextDestinationID in loadedTruck:
-            if(i == len(loadedTruck)):
-                break
-            currentPosition = loadedTruck[-1] #last item in the truck is the current address
+            if i == len(loadedTruck)-1:
+
+                tempList = calculatedDistances
+                tempList.sort()
+                secondSmallest = tempList[1]                                            #grabbing second smallest since 0 represents the self address
+
+                nextDestination = calculatedDistances.index(secondSmallest)
+
+                selectedPackageID = loadedTruck[nextDestination]                        # lookup packageID from index of the min value in calculatedDistances list
+                calculatedDistances = []                                                # reset the calculated distance values
+                totalDistanceTraveled += nextDestination                                # add to total distance traveled
+                loadedTruck.remove(selectedPackageID)                                   # remove packageID from truck
+                nextAddress = packageTable.lookup(selectedPackageID)
+                loadedTruck[-1] = nextAddress.address                                   # update the truck's address
+                i = 0                                                                   # reset the iterator to find next closest destination
+
+                break  # break from for loop to start over in while
+
+            currentPosition = loadedTruck[-1]                                           # last item in the truck is the current address
             potentialPackage = packageTable.lookup(potentialNextDestinationID)
             if potentialPackage is not None:
                 distance = readInput.address_lookup(currentPosition, potentialPackage.address, addressTable, distanceTable)
                 calculatedDistances.append(distance)
-            i+=1
-    #calculatedDistances = [x for x in calculatedDistances if x != 0]
+            i += 1
     print(calculatedDistances)
-    print(len(calculatedDistances))
-    print(len(loadedTruck))
-            #calculatedDistances.append(euclideanDistance(packageTable.lookup(selectedPackageID), packageTable.lookup(potentialNextDestinationID)))
-            #add truck address starting at hub then update the address as packages are delivered
-            #use loop that does min value search for package, when found remember package info
+    print("Min of calcDist: ", min(calculatedDistances))
+    print(totalDistanceTraveled)
+
+    # add truck address starting at hub then update the address as packages are delivered
+    # use loop that does min value search for package, when found remember package info
 
 
 if __name__ == '__main__':
     testHash = hashTable()
     loadedTruckOne, loadedTruckTwo, distanceData, addressData, packageData = readInput.read(testHash)
     nearestNeighbor(loadedTruckOne, distanceData, addressData, packageData)
-    #nearestNeighbor(loadedTruckTwo, distanceData, addressData, packageData)
+    # nearestNeighbor(loadedTruckTwo, distanceData, addressData, packageData)
