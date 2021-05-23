@@ -793,8 +793,8 @@ def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
             for x in range(len(begin)):
                 if toLocation in addressTable[tracker][x]:
                     matchingCoordinates.append(tracker)
-                    matchingCoordinates.append(x)
-                    break
+                    matchingCoordinates.append(x-1) # subtracting 1 since the first string is the next stop, and not doing so would return the index for the
+                    break                           # from location which anything from and to itself is 0.
             if len(matchingCoordinates) != 0:
                 if matchingCoordinates[1] == 27: matchingCoordinates[1] = matchingCoordinates[1] - 1
                 return distanceTable[matchingCoordinates[0]][matchingCoordinates[1]]
