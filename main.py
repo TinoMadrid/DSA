@@ -25,20 +25,24 @@ def timeWhenPackageIsDelivered(distance, speed):
         currTime = currTime + 1
         return currTime
 
+
 def convertDecimalToTime(number):
     decimals = number % 1
-    newTime = 0
+    global currTime
     if decimals > 0.59:
         newTime = number + 1
-        newTime = newTime + (decimals - 0.59)
+        currTime = newTime - 0.59
+        return currTime
+    return currTime
+
 
 def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable):
     truckPosition = "4001 South 700 East"  # starting position WGU address
     totalDistanceTraveled = 0
     findSmallest = 99
     dictionaryForSmallestDistanceInTruck = {'PackageID': 0, 'PackageDistance': 0}
-                                    #default time to 8AM (truck1 not truck2)
-                                    # truck2 departs 9:05 truck3 10
+    # default time to 8AM (truck1 not truck2)
+    # truck2 departs 9:05 truck3 10
 
     while len(loadedTruck) > 1:                                     #last item in list is the truck address
         for i in range(len(loadedTruck)-1):
@@ -54,7 +58,8 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable):
         # add function to calculate time with distance of package divided by speed of 18 mph
         # pseudotime findsmallest/18mph yields amt of time in hrs, currTime = currTime+ pseudoElapseTime
         # function to convert decimal num to timestamp user understands then store in package details
-        package.timestamp = timeWhenPackageIsDelivered(findSmallest, 18)
+        tempTimeStamp = timeWhenPackageIsDelivered(findSmallest, 18)
+        package.timestamp = convertDecimalToTime(tempTimeStamp)
         print(package.timestamp)
 
         # package.timestamp = time.ctime()                                                      # timestamp package so it is delivered
@@ -64,7 +69,9 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable):
         totalDistanceTraveled = totalDistanceTraveled + dictionaryForSmallestDistanceInTruck['PackageDistance']    #add distance to total distance traveled
         # print(package.timestamp)
 
-    print(totalDistanceTraveled)
+    #print(totalDistanceTraveled)
+
+
 if __name__ == '__main__':
     testHash = hashTable()
     loadedTruckOne, loadedTruckTwo, distanceData, addressData, packageData = readInput.read(testHash)
