@@ -67,7 +67,6 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable):
     print(totalDistanceTraveled)
 if __name__ == '__main__':
     testHash = hashTable()
-    #currTime = 8
     loadedTruckOne, loadedTruckTwo, distanceData, addressData, packageData = readInput.read(testHash)
     nearestNeighbor(loadedTruckOne, distanceData, addressData, packageData)
     nearestNeighbor(loadedTruckTwo, distanceData, addressData, packageData)
