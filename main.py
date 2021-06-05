@@ -8,35 +8,55 @@
 from Algorithm.hashImplementation import hashTable
 from IO import readInput
 
-currTime = 8
-def timeWhenPackageIsDelivered(distance, speed):
+currTimeForTruckOne = 8
+currTimeForTruckTwo = 8
+
+def timeWhenPackageIsDelivered(distance, speed, isTruckOne):
     timeElapsed = distance / speed
-    global currTime
+    global currTimeForTruckOne
+    global currTimeForTruckTwo
+
     if 0 <= timeElapsed <= 0.25:
-        currTime = currTime + 0.15
-        return currTime
+        if isTruckOne:
+            currTimeForTruckOne = currTimeForTruckOne + 0.15
+            return currTimeForTruckOne
+        else:
+            currTimeForTruckTwo = currTimeForTruckTwo + 0.15
+            return currTimeForTruckTwo
     elif 0.26 <= timeElapsed <= 0.5:
-        currTime = currTime + 0.3
-        return currTime
+        if isTruckOne:
+            currTimeForTruckOne = currTimeForTruckOne + 0.3
+            return currTimeForTruckOne
+        else:
+            currTimeForTruckTwo = currTimeForTruckTwo + 0.3
+            return currTimeForTruckTwo
     elif 0.51 <= timeElapsed <= 0.75:
-        currTime = currTime + 0.45
-        return currTime
+        if isTruckOne:
+            currTimeForTruckOne = currTimeForTruckOne + 0.45
+            return currTimeForTruckOne
+        else:
+            currTimeForTruckTwo = currTimeForTruckTwo + 0.45
+            return currTimeForTruckTwo
     else:
-        currTime = currTime + 1
-        return currTime
+        if isTruckOne:
+            currTimeForTruckOne = currTimeForTruckOne + 1
+            return currTimeForTruckOne
+        else:
+            currTimeForTruckTwo = currTimeForTruckTwo + 1
+            return currTimeForTruckTwo
 
 
 def convertDecimalToTime(number):
     decimals = number % 1
-    global currTime
+    global currTimeForTruckOne
     if decimals > 0.59:
         newTime = number + 1
-        currTime = newTime - 0.59
-        return currTime
-    return currTime
+        currTimeForTruckOne = newTime - 0.59
+        return currTimeForTruckOne
+    return currTimeForTruckOne
 
 
-def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable):
+def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTruckOne):
     truckPosition = "4001 South 700 East"  # starting position WGU address
     totalDistanceTraveled = 0
     findSmallest = 99
@@ -58,7 +78,7 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable):
         # add function to calculate time with distance of package divided by speed of 18 mph
         # pseudotime findsmallest/18mph yields amt of time in hrs, currTime = currTime+ pseudoElapseTime
         # function to convert decimal num to timestamp user understands then store in package details
-        tempTimeStamp = timeWhenPackageIsDelivered(findSmallest, 18)
+        tempTimeStamp = timeWhenPackageIsDelivered(findSmallest, 18, isTruckOne)
         package.timestamp = convertDecimalToTime(tempTimeStamp)
         print(package.timestamp)
 
@@ -75,5 +95,5 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable):
 if __name__ == '__main__':
     testHash = hashTable()
     loadedTruckOne, loadedTruckTwo, distanceData, addressData, packageData = readInput.read(testHash)
-    nearestNeighbor(loadedTruckOne, distanceData, addressData, packageData)
-    nearestNeighbor(loadedTruckTwo, distanceData, addressData, packageData)
+    nearestNeighbor(loadedTruckOne, distanceData, addressData, packageData, True)
+    nearestNeighbor(loadedTruckTwo, distanceData, addressData, packageData, False)
