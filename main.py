@@ -70,6 +70,8 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
     totalDistanceTraveled = 0
     findSmallest = 99
     dictionaryForSmallestDistanceInTruck = {'PackageID': 0, 'PackageDistance': 0}
+    global currTimeForTruckOne
+    loadTwoDone = False
 
     while len(loadedTruck) > 1:  # last item in list is the truck address
         for i in range(len(loadedTruck) - 1):
@@ -81,16 +83,21 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
                 dictionaryForSmallestDistanceInTruck[
                     'PackageID'] = potentialPackage.packageID  # then set the dictionary variable
                 dictionaryForSmallestDistanceInTruck['PackageDistance'] = packageDistance
+            if currTimeForTruckOne >= 10.30 and loadTwoDone == False:
+                if isTruckOne:
+                    loadTwoDone = True
+                    readInput.truckOneLoadTwo(loadedTruck)
+
         # after finding the next smallest, go there and update truck address
         package = packageTable.lookup(
             dictionaryForSmallestDistanceInTruck['PackageID'])  # get package address from packageID
 
         truckNumber = 1
-        if isTruckOne: truckNumber = 1
-        else: truckNumber = 2
-        # add function to calculate time with distance of package divided by speed of 18 mph
-        # pseudotime findsmallest/18mph yields amt of time in hrs, currTime = currTime+ pseudoElapseTime
-        # function to convert decimal num to timestamp user understands then store in package details
+        if isTruckOne:
+            truckNumber = 1
+        else:
+            truckNumber = 2
+
         tempTimeStamp = timeWhenPackageIsDelivered(findSmallest, 18, isTruckOne)
         package.timestamp = convertDecimalToTime(tempTimeStamp, isTruckOne)
         print("Package:", package.packageID, "delivered at - %.2f" % package.timestamp, "by truck:", truckNumber)

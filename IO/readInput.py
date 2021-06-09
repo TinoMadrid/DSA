@@ -821,9 +821,11 @@ def read(table):
     truckOne = []
     truckTwo = []
 
-    loadedTruckOne, loadedTruckTwo = loadTrucks(truckOne, truckTwo, packageTable)
-    return loadedTruckOne, loadedTruckTwo, distanceTable, addressTable, packageTable
-
+    # loadedTruckOne, loadedTruckTwo = loadTrucks(truckOne, truckTwo, packageTable)
+    # return loadedTruckOne, loadedTruckTwo, distanceTable, addressTable, packageTable
+    truckOneFirstLoad = truckOneLoadOne(truckOne)
+    truckTwoFirstLoad = truckTwoLoadOne(truckTwo)
+    return truckOneFirstLoad, truckTwoFirstLoad, distanceTable, addressTable, packageTable
 
 def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
     tracker = 0
@@ -881,8 +883,6 @@ def loadTrucks(truckOne, truckTwo, packageTable):
     resultTruckTwo.remove(39)
     resultTruckTwo.remove(35)
 
-    # NEXT need to change loading to meet requirements for project.
-    ## add the beginning addresses of the trucks
     resultTruckOne.append("Western Governors University 4001 South 700 East(84107)")
     resultTruckTwo.append("Western Governors University 4001 South 700 East(84107)")
 
