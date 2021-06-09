@@ -9,7 +9,8 @@ from Algorithm.hashImplementation import hashTable
 from IO import readInput
 
 currTimeForTruckOne = 8
-currTimeForTruckTwo = 8
+currTimeForTruckTwo = 9.05
+
 
 def timeWhenPackageIsDelivered(distance, speed, isTruckOne):
     timeElapsed = distance / speed
@@ -46,14 +47,22 @@ def timeWhenPackageIsDelivered(distance, speed, isTruckOne):
             return currTimeForTruckTwo
 
 
-def convertDecimalToTime(number):
+def convertDecimalToTime(number, isTruckOne):
     decimals = number % 1
     global currTimeForTruckOne
+    global currTimeForTruckTwo
     if decimals > 0.59:
         newTime = number + 1
-        currTimeForTruckOne = newTime - 0.59
+        if isTruckOne:
+            currTimeForTruckOne = newTime - 0.59
+            return currTimeForTruckOne
+        else:
+            currTimeForTruckTwo = newTime - 0.59
+            return currTimeForTruckTwo
+    if isTruckOne:
         return currTimeForTruckOne
-    return currTimeForTruckOne
+    else:
+        return currTimeForTruckTwo
 
 
 def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTruckOne):
@@ -61,35 +70,37 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
     totalDistanceTraveled = 0
     findSmallest = 99
     dictionaryForSmallestDistanceInTruck = {'PackageID': 0, 'PackageDistance': 0}
-    # default time to 8AM (truck1 not truck2)
-    # truck2 departs 9:05 truck3 10
 
-    while len(loadedTruck) > 1:                                     #last item in list is the truck address
-        for i in range(len(loadedTruck)-1):
-            potentialPackage = packageTable.lookup(loadedTruck[i])  #do package lookup
-            packageDistance = readInput.address_lookup(truckPosition, potentialPackage.address, addressTable, distanceTable) # retrieve distance
-            if packageDistance < findSmallest:                      #now check if the package distance is smaller than previous
-                findSmallest = packageDistance                      #update the min value if it is
-                dictionaryForSmallestDistanceInTruck['PackageID'] = potentialPackage.packageID  # then set the dictionary variable
+    while len(loadedTruck) > 1:  # last item in list is the truck address
+        for i in range(len(loadedTruck) - 1):
+            potentialPackage = packageTable.lookup(loadedTruck[i])  # do package lookup
+            packageDistance = readInput.address_lookup(truckPosition, potentialPackage.address, addressTable,
+                                                       distanceTable)  # retrieve distance
+            if packageDistance < findSmallest:  # now check if the package distance is smaller than previous
+                findSmallest = packageDistance  # update the min value if it is
+                dictionaryForSmallestDistanceInTruck[
+                    'PackageID'] = potentialPackage.packageID  # then set the dictionary variable
                 dictionaryForSmallestDistanceInTruck['PackageDistance'] = packageDistance
         # after finding the next smallest, go there and update truck address
-        package = packageTable.lookup(dictionaryForSmallestDistanceInTruck['PackageID'])    # get package address from packageID
+        package = packageTable.lookup(
+            dictionaryForSmallestDistanceInTruck['PackageID'])  # get package address from packageID
 
+        truckNumber = 1
+        if isTruckOne: truckNumber = 1
+        else: truckNumber = 2
         # add function to calculate time with distance of package divided by speed of 18 mph
         # pseudotime findsmallest/18mph yields amt of time in hrs, currTime = currTime+ pseudoElapseTime
         # function to convert decimal num to timestamp user understands then store in package details
         tempTimeStamp = timeWhenPackageIsDelivered(findSmallest, 18, isTruckOne)
-        package.timestamp = convertDecimalToTime(tempTimeStamp)
-        print(package.timestamp)
+        package.timestamp = convertDecimalToTime(tempTimeStamp, isTruckOne)
+        print("Package:", package.packageID, "delivered at - %.2f" % package.timestamp, "by truck:", truckNumber)
 
-        # package.timestamp = time.ctime()                                                      # timestamp package so it is delivered
-        truckPosition = package.address                                                           # set the truck new address
-        loadedTruck.remove(dictionaryForSmallestDistanceInTruck['PackageID'])                      # now remove the package from the truck
-        findSmallest = 99                                                                           # reset the minValue
-        totalDistanceTraveled = totalDistanceTraveled + dictionaryForSmallestDistanceInTruck['PackageDistance']    #add distance to total distance traveled
-        # print(package.timestamp)
-
-    #print(totalDistanceTraveled)
+        truckPosition = package.address  # set the truck new address
+        loadedTruck.remove(dictionaryForSmallestDistanceInTruck['PackageID'])  # now remove the package from the truck
+        findSmallest = 99  # reset the minValue
+        totalDistanceTraveled = totalDistanceTraveled + dictionaryForSmallestDistanceInTruck[
+            'PackageDistance']  # add distance to total distance traveled
+    # print(totalDistanceTraveled)
 
 
 if __name__ == '__main__':
