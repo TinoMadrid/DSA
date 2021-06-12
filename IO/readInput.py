@@ -821,8 +821,7 @@ def read(table):
     truckOne = []
     truckTwo = []
 
-    # loadedTruckOne, loadedTruckTwo = loadTrucks(truckOne, truckTwo, packageTable)
-    # return loadedTruckOne, loadedTruckTwo, distanceTable, addressTable, packageTable
+
     truckOneFirstLoad = truckOneLoadOne(truckOne)
     truckTwoFirstLoad = truckTwoLoadOne(truckTwo)
     return truckOneFirstLoad, truckTwoFirstLoad, distanceTable, addressTable, packageTable
@@ -950,3 +949,19 @@ def truckOneLoadTwo(truckOne):
     truckOne.append(40)
 
     return truckOne
+
+def printPackageInfo(packageTable):
+    isDelivered = False
+    for i in range(41):
+        package = packageTable.lookup(i)
+
+        if package is not None:
+            if package.timestamp is None:
+                isDelivered = False
+            else:
+                isDelivered = True
+
+            if isDelivered:
+                print("Package", package.packageID, "delivered at: ", package.timestamp, "Special Notes are:", package.timestamp)
+            else:
+                print("Package", package.packageID, "has not been delivered yet", "Special Notes are:", package.specialNotes)
