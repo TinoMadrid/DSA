@@ -10,6 +10,7 @@ from IO import readInput
 
 currTimeForTruckOne = 8
 currTimeForTruckTwo = 9.05
+loadTwoDone = False
 
 
 def formatTime(number):
@@ -75,27 +76,25 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
     findSmallest = 99
     dictionaryForSmallestDistanceInTruck = {'PackageID': 0, 'PackageDistance': 0}
     global currTimeForTruckOne
-    loadTwoDone = False
+    global loadTwoDone
 
     while len(loadedTruck) > 1:  # last item in list is the truck address
 
-        for i in range(len(loadedTruck) - 1):
+        for i in range(len(loadedTruck)):
             potentialPackage = packageTable.lookup(loadedTruck[i])  # do package lookup
             packageDistance = readInput.address_lookup(truckPosition, potentialPackage.address, addressTable,
                                                        distanceTable)  # retrieve distance
             if packageDistance < findSmallest:  # now check if the package distance is smaller than previous
                 findSmallest = packageDistance  # update the min value if it is
-                dictionaryForSmallestDistanceInTruck[
-                    'PackageID'] = potentialPackage.packageID  # then set the dictionary variable
+                dictionaryForSmallestDistanceInTruck['PackageID'] = potentialPackage.packageID  # then set the dictionary variable
                 dictionaryForSmallestDistanceInTruck['PackageDistance'] = packageDistance
-                if currTimeForTruckOne >= 10.30 and loadTwoDone == False:
+                if currTimeForTruckOne >= 10.30 and loadTwoDone == False: # check to see if load two is ready to go
                     if isTruckOne:
                         loadTwoDone = True
                         readInput.truckOneLoadTwo(loadedTruck)
 
         # after finding the next smallest, go there and update truck address
-        package = packageTable.lookup(
-            dictionaryForSmallestDistanceInTruck['PackageID'])  # get package address from packageID
+        package = packageTable.lookup(dictionaryForSmallestDistanceInTruck['PackageID'])  # get package address from packageID
 
         truckNumber = 1
         if isTruckOne:
@@ -110,23 +109,38 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
         truckPosition = package.address  # set the truck new address
         loadedTruck.remove(dictionaryForSmallestDistanceInTruck['PackageID'])  # now remove the package from the truck
         findSmallest = 99  # reset the minValue
-        totalDistanceTraveled = totalDistanceTraveled + dictionaryForSmallestDistanceInTruck[
-            'PackageDistance']  # add distance to total distance traveled
+        totalDistanceTraveled = totalDistanceTraveled + dictionaryForSmallestDistanceInTruck['PackageDistance']  # add distance to total distance traveled
         # print(totalDistanceTraveled)
 
-        print("Press 1 to continue deliveries, 2 for package info, 3 for time, 4 to quit program")
+        print("Press 1 to continue deliveries, 2 for package info, 3 for time, 4 to print truck contents , 5 to quit program")
         selection = int(input())
         if selection == 1:
             continue
         elif selection == 2:
             readInput.printPackageInfo(packageTable)
         elif selection == 3:
-            print("Implement time print")
+            print("Select truck 1 or 2 to see it's current time")
+            selectedTruck = int(input())
+            if selectedTruck == 1:
+                t = formatTime(currTimeForTruckOne)
+                print(t)
+            elif selectedTruck == 2:
+                t = formatTime(currTimeForTruckTwo)
+                print(t)
+            else:
+                print("Invalid truck selection")
         elif selection == 4:
+            print("Note that calls to load trucks are sequential, truck 1 is loaded first then truck 2")
+            print("Truck contents")
+            for i in range(len(loadedTruck)):
+                print(loadedTruck[i])
+        elif selection == 5:
             exit(0)
+
         else:
             print("Invalid input")
             continue
+    readInput.printPackageInfo(packageTable)
 
 
 if __name__ == '__main__':
