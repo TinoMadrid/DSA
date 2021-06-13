@@ -78,7 +78,7 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
     global currTimeForTruckOne
     global loadTwoDone
 
-    while len(loadedTruck) > 1:  # last item in list is the truck address
+    while len(loadedTruck) >= 1:  # last item in list is the truck address
 
         for i in range(len(loadedTruck)):
             potentialPackage = packageTable.lookup(loadedTruck[i])  # do package lookup
@@ -130,8 +130,13 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
             else:
                 print("Invalid truck selection")
         elif selection == 4:
+            t1 = 1
+            if isTruckOne:
+                t1
+            else:
+                t1 = 2
             print("Note that calls to load trucks are sequential, truck 1 is loaded first then truck 2")
-            print("Truck contents")
+            print("Truck", t1, "contents")
             for i in range(len(loadedTruck)):
                 print(loadedTruck[i])
         elif selection == 5:
@@ -155,3 +160,4 @@ if __name__ == '__main__':
         loadedTruckOne, loadedTruckTwo, distanceData, addressData, packageData = readInput.read(testHash)
         nearestNeighbor(loadedTruckOne, distanceData, addressData, packageData, True)
         nearestNeighbor(loadedTruckTwo, distanceData, addressData, packageData, False)
+
