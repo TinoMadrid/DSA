@@ -1,6 +1,8 @@
 from Algorithm.PackageModel import Package
 
-
+# the package table is hardcoded since I had ran into many issues trying to read the file dynamically
+# this would be O(n) for both time and space complexity since this too grows linearly with the size of the input
+# the packageTable, addressTable, and the distanceTable
 def readFile(packageTable):
     newPck1 = Package(1, "195 W Oakland Ave", "Salt Lake City", "UT", 84115, "###", 21, None, None)
     newPck2 = Package(2, "2530 S 500 E", "Salt Lake City", "UT", 84106, "EOD", 44, None, None)
@@ -815,6 +817,8 @@ def readFile(packageTable):
     return distanceTable, addressTable, packageTable
 
 
+# this function is the entry point for this file and calls to create the instances of these 3 major tables
+# space and time complexity for this function is constant O(1) since the parameter is an empty hash table
 def read(table):
     distanceTable, addressTable, packageTable = readFile(table)
 
@@ -826,6 +830,11 @@ def read(table):
     return truckOneFirstLoad, truckTwoFirstLoad, distanceTable, addressTable, packageTable
 
 
+# this function is what finds the distance from one location to another by matching indices from the address table
+# this function since it has 2 loops and a recursive call, make it O(2^n) which by far one of the worst time complexities
+# essentially this function is looking for the address that is matched in the 0 position of the address table and then
+# iterates through that list to find the destination, grabs the indices and uses that to look up the distance.
+# space complexity for the this function is O(n) since each table grows linearly with the input provided to it.
 def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
     tracker = 0
     for begin in addressTable:
@@ -845,49 +854,8 @@ def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
                           distanceTable)  # function calls itself if the from location is located behind tracker count
 
 
-def loadTrucks(truckOne, truckTwo, packageTable):
-    for i in range(42):
-        placeholder = packageTable.lookup(i)
-        if placeholder is not None:
-            if placeholder.specialNotes is not None:
-                if "truck 2" in placeholder.specialNotes:
-                    truckTwo.append(placeholder.packageID)
-                elif "Must be delivered with" in placeholder.specialNotes:
-                    result = [int(j) for j in placeholder.specialNotes.split() if j.isdigit()]
-                    if result in truckOne:
-                        res = [int(j) for j in placeholder.specialNotes.split() if j.isdigit()]
-                        object0 = packageTable.lookup(res[0])
-                        object1 = packageTable.lookup(res[1])
-                        truckOne.append(object0.packageID)
-                        truckOne.append(object1.packageID)
-                        truckOne.append(placeholder.packageID)
-                    else:
-                        res = [int(j) for j in placeholder.specialNotes.split() if j.isdigit()]
-                        object0 = packageTable.lookup(res[0])
-                        object1 = packageTable.lookup(res[1])
-                        truckTwo.append(placeholder.packageID)
-                        truckTwo.append(object0.packageID)
-                        truckTwo.append(object1.packageID)
-            if len(truckOne) > len(truckTwo):
-                truckTwo.append(placeholder.packageID)
-            else:
-                truckOne.append(placeholder.packageID)
-    resultTruckOne = []
-    resultTruckTwo = []
-    [resultTruckTwo.append(x) for x in truckTwo if x not in resultTruckTwo]
-    [resultTruckOne.append(x) for x in truckOne if x not in resultTruckTwo or x not in truckOne]
-
-    resultTruckOne.append(39)
-    resultTruckOne.append(35)
-    resultTruckTwo.remove(39)
-    resultTruckTwo.remove(35)
-
-    resultTruckOne.append("Western Governors University 4001 South 700 East(84107)")
-    resultTruckTwo.append("Western Governors University 4001 South 700 East(84107)")
-
-    return resultTruckOne, resultTruckTwo
-
-
+# this load functions time and space complexity wise are 0(n) since these lists grow linearly with their inputs
+# even though constraints dictate that they can only carry 16 at one time.
 def truckOneLoadOne(truckOne):
     truckOne.append(1)
     truckOne.append(2)
@@ -951,6 +919,8 @@ def truckOneLoadTwo(truckOne):
     return truckOne
 
 
+# this function prints package details and it too grows linearly with the packageTable size
+# as well as time wise since each item needs to be iterated through
 def printPackageInfo(packageTable):
     isDelivered = False
     for i in range(41):

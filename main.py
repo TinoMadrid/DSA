@@ -11,12 +11,15 @@ from IO import readInput
 currTimeForTruckOne = 8
 currTimeForTruckTwo = 9.05
 loadTwoDone = False
+allMileage = 0
 
 
+# This function formatTime is to set the time variable to only 2 decimals to the right since time is stored as an int
 def formatTime(number):
     return round(number, 2)
 
-
+# this calculates the time that has elapsed when driving to another destination
+# this is O(1) since there isn't any significant overhead
 def timeWhenPackageIsDelivered(distance, speed, isTruckOne):
     timeElapsed = distance / speed
     global currTimeForTruckOne
@@ -52,6 +55,8 @@ def timeWhenPackageIsDelivered(distance, speed, isTruckOne):
             return currTimeForTruckTwo
 
 
+# since time is kept in a decimal format, this function ensures to keep it within time constraints
+# this function is also in constant time of O(1)
 def convertDecimalToTime(number, isTruckOne):
     decimals = number % 1
     global currTimeForTruckOne
@@ -70,6 +75,10 @@ def convertDecimalToTime(number, isTruckOne):
         return currTimeForTruckTwo
 
 
+# this function is the core algorithm used to determine shortest path from the truck's current position to the next package.
+# Since there are 2 loops within here the worst case for time complexity is O(n^2)
+# Space complexity here is O(n), this function is used with 1 truck at a time.
+# This also applies to both the distance, address, and package information since these grow linearly with the size of the input data
 def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTruckOne):
     truckPosition = "4001 South 700 East"  # starting position WGU address
     totalDistanceTraveled = 0
@@ -77,6 +86,8 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
     dictionaryForSmallestDistanceInTruck = {'PackageID': 0, 'PackageDistance': 0}
     global currTimeForTruckOne
     global loadTwoDone
+    global allMileage
+    t1 = 1
 
     while len(loadedTruck) >= 1:  # last item in list is the truck address
 
@@ -96,11 +107,10 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
         # after finding the next smallest, go there and update truck address
         package = packageTable.lookup(dictionaryForSmallestDistanceInTruck['PackageID'])  # get package address from packageID
 
-        truckNumber = 1
         if isTruckOne:
-            truckNumber = 1
+            t1
         else:
-            truckNumber = 2
+            t1 = 2
 
         tempTimeStamp = timeWhenPackageIsDelivered(findSmallest, 18, isTruckOne)
         tStamp = convertDecimalToTime(tempTimeStamp, isTruckOne)
@@ -110,9 +120,10 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
         loadedTruck.remove(dictionaryForSmallestDistanceInTruck['PackageID'])  # now remove the package from the truck
         findSmallest = 99  # reset the minValue
         totalDistanceTraveled = totalDistanceTraveled + dictionaryForSmallestDistanceInTruck['PackageDistance']  # add distance to total distance traveled
-        # print(totalDistanceTraveled)
+        if loadedTruck == 1:
+            allMileage = allMileage + totalDistanceTraveled
 
-        print("Press 1 to continue deliveries, 2 for package info, 3 for time, 4 to print truck contents , 5 to quit program")
+        print("Press 1 to continue deliveries, 2 for package info, 3 for time, 4 to print truck contents , 5 to quit program, 6 to show mileage traveled so far")
         selection = int(input())
         if selection == 1:
             continue
@@ -130,7 +141,6 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
             else:
                 print("Invalid truck selection")
         elif selection == 4:
-            t1 = 1
             if isTruckOne:
                 t1
             else:
@@ -141,17 +151,15 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
                 print(loadedTruck[i])
         elif selection == 5:
             exit(0)
-
+        elif selection == 6:
+            print("Truck ", t1, "has traveled", totalDistanceTraveled)
         else:
             print("Invalid input")
             continue
     readInput.printPackageInfo(packageTable)
-
+    allMileage = allMileage + totalDistanceTraveled
 
 if __name__ == '__main__':
-    # need to ask user what time trucks should depart
-
-    # next need to prompt user if they wish to display package data
     print("Welcome to WGU package delivery program! Press 1 to continue or 0 to exit")
     selection = int(input())
 
@@ -160,4 +168,4 @@ if __name__ == '__main__':
         loadedTruckOne, loadedTruckTwo, distanceData, addressData, packageData = readInput.read(testHash)
         nearestNeighbor(loadedTruckOne, distanceData, addressData, packageData, True)
         nearestNeighbor(loadedTruckTwo, distanceData, addressData, packageData, False)
-
+        print("Total distance traveled", allMileage)
