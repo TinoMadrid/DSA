@@ -1,6 +1,6 @@
 class Package:
 
-    def __init__(self, packageID, address, city, state, zip, deliveryDeadline, wgt, specialNotes, timestamp):
+    def __init__(self, packageID, address, city, state, zip, deliveryDeadline, wgt, specialNotes, timestamp, isLoaded):
         self.packageID = packageID
         self.address = address
         self.city = city
@@ -10,3 +10,4 @@ class Package:
         self.wgt = wgt
         self.specialNotes = specialNotes
         self.timestamp = timestamp
+        self.isLoaded = isLoaded

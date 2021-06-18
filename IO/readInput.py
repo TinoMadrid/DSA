@@ -1,61 +1,65 @@
 from Algorithm.PackageModel import Package
 
+
 # the package table is hardcoded since I had ran into many issues trying to read the file dynamically
 # this would be O(n) for both time and space complexity since this too grows linearly with the size of the input
 # the packageTable, addressTable, and the distanceTable
 def readFile(packageTable):
-    newPck1 = Package(1, "195 W Oakland Ave", "Salt Lake City", "UT", 84115, "###", 21, None, None)
-    newPck2 = Package(2, "2530 S 500 E", "Salt Lake City", "UT", 84106, "EOD", 44, None, None)
-    newPck3 = Package(3, "233 Canyon Rd", "Salt Lake City", "UT", 84103, "EOD", 2, "Can only be on truck 2", None)
-    newPck4 = Package(4, "380 W 2880 S", "Salt Lake City", "UT", 84115, "EOD", 4, None, None)
-    newPck5 = Package(5, "410 S State St", "Salt Lake City", "UT", 84111, "EOD", 5, None, None)
+    newPck1 = Package(1, "195 W Oakland Ave", "Salt Lake City", "UT", 84115, "###", 21, None, None, False)
+    newPck2 = Package(2, "2530 S 500 E", "Salt Lake City", "UT", 84106, "EOD", 44, None, None, False)
+    newPck3 = Package(3, "233 Canyon Rd", "Salt Lake City", "UT", 84103, "EOD", 2, "Can only be on truck 2", None,
+                      False)
+    newPck4 = Package(4, "380 W 2880 S", "Salt Lake City", "UT", 84115, "EOD", 4, None, None, False)
+    newPck5 = Package(5, "410 S State St", "Salt Lake City", "UT", 84111, "EOD", 5, None, None, False)
     newPck6 = Package(6, "3060 Lester St", "West Valley City", "UT", 84119, "###", 88,
-                      "Delayed on flight---will not arrive to depot until 9:05 am", None)
-    newPck7 = Package(7, "1330 2100 S", "Salt Lake City", "UT", 84106, "EOD", 8, None, None)
-    newPck8 = Package(8, "300 State St", "Salt Lake City", "UT", 84103, "EOD", 9, None, None)
-    newPck9 = Package(9, "300 State St", "Salt Lake City", "UT", 84103, "EOD", 2, "Wrong address listed", None)
-    newPck10 = Package(10, "600 E 900", "Salt Lake City", "UT", 84105, "EOD", 1, None, None)
+                      "Delayed on flight---will not arrive to depot until 9:05 am", None, False)
+    newPck7 = Package(7, "1330 2100 S", "Salt Lake City", "UT", 84106, "EOD", 8, None, None, False)
+    newPck8 = Package(8, "300 State St", "Salt Lake City", "UT", 84103, "EOD", 9, None, None, False)
+    newPck9 = Package(9, "300 State St", "Salt Lake City", "UT", 84103, "EOD", 2, "Wrong address listed", None, False)
+    newPck10 = Package(10, "600 E 900", "Salt Lake City", "UT", 84105, "EOD", 1, None, None, False)
 
-    newPck11 = Package(11, "2600 Taylorsville Blvd", "Salt Lake City", "UT", 84118, "EOD", 1, None, None)
+    newPck11 = Package(11, "2600 Taylorsville Blvd", "Salt Lake City", "UT", 84118, "EOD", 1, None, None, False)
     newPck12 = Package(12, "3575 W Valley Central Station bus Loop", "West Valley City", "UT", 84119, "EOD", 1, None,
-                       None)
-    newPck13 = Package(13, "2010 W 500 S", "Salt Lake City", "UT", 84104, "###", 2, None, None)
+                       None, False)
+    newPck13 = Package(13, "2010 W 500 S", "Salt Lake City", "UT", 84104, "###", 2, None, None, False)
     newPck14 = Package(14, "4300 S 1300 E", "Millcreek", "UT", 84117, "###", 88, "Must be delivered with 15 and 19",
-                       None)
-    newPck15 = Package(15, "4580 S 2300 E", "Holladay", "UT", 84117, "9:00 AM", 4, None, None)
+                       None, False)
+    newPck15 = Package(15, "4580 S 2300 E", "Holladay", "UT", 84117, "9:00 AM", 4, None, None, False)
     newPck16 = Package(16, "4580 S 2300 E", "Holladay", "UT", 84117, "10:30 AM", 88, "Must be delivered with 13 and 19",
-                       None)
-    newPck17 = Package(17, "3148 S 1100 W", "Salt Lake City", "UT", 84119, "EOD", 2, None, None)
-    newPck18 = Package(18, "1488 4800 S", "Salt Lake City", "UT", 84123, "EOD", 6, "Can only be on truck 2", None)
-    newPck19 = Package(19, "177 W Price Ave", "Salt Lake City", "UT", 84115, "EOD", 37, None, None)
+                       None, False)
+    newPck17 = Package(17, "3148 S 1100 W", "Salt Lake City", "UT", 84119, "EOD", 2, None, None, False)
+    newPck18 = Package(18, "1488 4800 S", "Salt Lake City", "UT", 84123, "EOD", 6, "Can only be on truck 2", None,
+                       False)
+    newPck19 = Package(19, "177 W Price Ave", "Salt Lake City", "UT", 84115, "EOD", 37, None, None, False)
     newPck20 = Package(20, "3595 Main St", "Salt Lake City", "UT", 84115, "###", 37, "Must be delivered with 13 and 15",
-                       None)
+                       None, False)
 
-    newPck21 = Package(21, "3595 Main St", "Salt Lake City", "UT", 84115, "EOD", 3, None, None)
-    newPck22 = Package(22, "6351 South 900 East", "Murray", "UT", 84121, "EOD", 2, None, None)
-    newPck23 = Package(23, "5100 South 2700 West", "Salt Lake City", "UT", 84118, "EOD", 5, None, None)
-    newPck24 = Package(24, "5025 State St", "Murray", "UT", 84107, "EOD", 7, None, None)
+    newPck21 = Package(21, "3595 Main St", "Salt Lake City", "UT", 84115, "EOD", 3, None, None, False)
+    newPck22 = Package(22, "6351 South 900 East", "Murray", "UT", 84121, "EOD", 2, None, None, False)
+    newPck23 = Package(23, "5100 South 2700 West", "Salt Lake City", "UT", 84118, "EOD", 5, None, None, False)
+    newPck24 = Package(24, "5025 State St", "Murray", "UT", 84107, "EOD", 7, None, None, False)
     newPck25 = Package(25, "5383 South 900 East #104", "Salt Lake City", "UT", 84117, "###", 7,
-                       "Delayed on flight---will not arrive to depot until 9:05 am", None)
-    newPck26 = Package(26, "5383 South 900 East #104", "Salt Lake City", "UT", 84117, "EOD", 25, None, None)
-    newPck27 = Package(27, "1060 Dalton Ave S", "Salt Lake City", "UT", 84104, "EOD", 5, None, None)
+                       "Delayed on flight---will not arrive to depot until 9:05 am", None, False)
+    newPck26 = Package(26, "5383 South 900 East #104", "Salt Lake City", "UT", 84117, "EOD", 25, None, None, False)
+    newPck27 = Package(27, "1060 Dalton Ave S", "Salt Lake City", "UT", 84104, "EOD", 5, None, None, False)
     newPck28 = Package(28, "2835 Main St", "Salt Lake City", "UT", 84115, "EOD", 7,
-                       "Delayed on flight---will not arrive to depot until 9:05 am", None)
-    newPck29 = Package(29, "1330 2100 S", "Salt Lake City", "UT", 84106, "###", 2, None, None)
-    newPck30 = Package(30, "300 State St", "Salt Lake City", "UT", 84103, "###", 1, None, None)
+                       "Delayed on flight---will not arrive to depot until 9:05 am", None, False)
+    newPck29 = Package(29, "1330 2100 S", "Salt Lake City", "UT", 84106, "###", 2, None, None, False)
+    newPck30 = Package(30, "300 State St", "Salt Lake City", "UT", 84103, "###", 1, None, None, False)
 
-    newPck31 = Package(31, "3365 S 900 W", "Salt Lake City", "UT", 84119, "###", 1, None, None)
+    newPck31 = Package(31, "3365 S 900 W", "Salt Lake City", "UT", 84119, "###", 1, None, None, False)
     newPck32 = Package(32, "3365 S 900 W", "Salt Lake City", "UT", 84119, "EOD", 1,
-                       "Delayed on flight---will not arrive to depot until 9:05 am", None)
-    newPck33 = Package(33, "2530 S 500 E", "Salt Lake City", "UT", 84106, "EOD", 1, None, None)
-    newPck34 = Package(34, "4580 S 2300 E", "Holladay", "UT", 84117, "###", 2, None, None)
-    newPck35 = Package(35, "1060 Dalton Ave S", "Salt Lake City", "UT", 84104, "EOD", 88, None, None)
+                       "Delayed on flight---will not arrive to depot until 9:05 am", None, False)
+    newPck33 = Package(33, "2530 S 500 E", "Salt Lake City", "UT", 84106, "EOD", 1, None, None, False)
+    newPck34 = Package(34, "4580 S 2300 E", "Holladay", "UT", 84117, "###", 2, None, None, False)
+    newPck35 = Package(35, "1060 Dalton Ave S", "Salt Lake City", "UT", 84104, "EOD", 88, None, None, False)
     newPck36 = Package(36, "2300 Parkway Blvd", "West Valley City", "UT", 84119, "EOD", 88, "Can only be on truck 2",
-                       None)
-    newPck37 = Package(37, "410 S State St", "Salt Lake City", "UT", 84111, "###", 2, None, None)
-    newPck38 = Package(38, "410 S State St", "Salt Lake City", "UT", 84111, "EOD", 9, "Can only be on truck 2", None)
-    newPck39 = Package(39, "2010 W 500 S", "Salt Lake City", "UT", 84104, "EOD", 9, None, None)
-    newPck40 = Package(40, "380 W 2880 S", "Salt Lake City", "UT", 84115, "10:30 AM", 45, None, None)
+                       None, False)
+    newPck37 = Package(37, "410 S State St", "Salt Lake City", "UT", 84111, "###", 2, None, None, False)
+    newPck38 = Package(38, "410 S State St", "Salt Lake City", "UT", 84111, "EOD", 9, "Can only be on truck 2", None,
+                       False)
+    newPck39 = Package(39, "2010 W 500 S", "Salt Lake City", "UT", 84104, "EOD", 9, None, None, False)
+    newPck40 = Package(40, "380 W 2880 S", "Salt Lake City", "UT", 84115, "10:30 AM", 45, None, None, False)
 
     packageTable.insert(newPck1.packageID, newPck1)
     packageTable.insert(newPck2.packageID, newPck2)
@@ -933,8 +937,12 @@ def printPackageInfo(packageTable):
                 isDelivered = True
 
             if isDelivered:
-                print("Package",package.packageID,"delivered at: ",package.timestamp, "Special Notes are:",
+                print("Package", package.packageID, "delivered at: %.2f" % package.timestamp, "Special Notes are:",
                       package.specialNotes)
             else:
-                print("Package",package.packageID,"has not been delivered yet","Special Notes are:",
-                      package.specialNotes)
+                if package.isLoaded:
+                    print("Package", package.packageID, "is en route", "Special Notes are:",
+                          package.specialNotes)
+                else:
+                    print("Package", package.packageID, "is at hub", "Special Notes are:",
+                          package.specialNotes)
