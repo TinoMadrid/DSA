@@ -835,10 +835,10 @@ def read(table):
 
 
 # this function is what finds the distance from one location to another by matching indices from the address table
-# this function since it has 2 loops and a recursive call, make it O(2^n) which by far one of the worst time complexities
+# this function since it has 2 loops and a recursive call, make it O(N^2) which by far one of the worst time complexities
 # essentially this function is looking for the address that is matched in the 0 position of the address table and then
 # iterates through that list to find the destination, grabs the indices and uses that to look up the distance.
-# space complexity for the this function is O(n) since each table grows linearly with the input provided to it.
+# space complexity for the this function is O(N^2) since each table grows exponentially with the input provided to it.
 def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
     tracker = 0
     for begin in addressTable:
@@ -858,7 +858,7 @@ def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
                           distanceTable)  # function calls itself if the from location is located behind tracker count
 
 
-# this load functions time and space complexity wise are 0(n) since these lists grow linearly with their inputs
+# this load functions time and space complexity wise are 0(N) since these lists grow linearly with their inputs
 # even though constraints dictate that they can only carry 16 at one time.
 def truckOneLoadOne(truckOne):
     truckOne.append(1)

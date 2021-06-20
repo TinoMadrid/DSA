@@ -166,8 +166,6 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
         findSmallest = 99  # reset the minValue
         totalDistanceTraveled = totalDistanceTraveled + dictionaryForSmallestDistanceInTruck[
             'PackageDistance']  # add distance to total distance traveled
-        if loadedTruck == 1:
-            allMileage = allMileage + totalDistanceTraveled
 
     allMileage = allMileage + totalDistanceTraveled
 
