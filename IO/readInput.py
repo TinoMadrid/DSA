@@ -5,13 +5,13 @@ from Algorithm.PackageModel import Package
 # this would be O(n) for both time and space complexity since this too grows linearly with the size of the input
 # the packageTable, addressTable, and the distanceTable
 def readFile(packageTable):
-    newPck1 = Package(1, "195 W Oakland Ave", "Salt Lake City", "UT", 84115, "###", 21, None, None, False)
+    newPck1 = Package(1, "195 W Oakland Ave", "Salt Lake City", "UT", 84115, "10:30 AM", 21, None, None, False)
     newPck2 = Package(2, "2530 S 500 E", "Salt Lake City", "UT", 84106, "EOD", 44, None, None, False)
     newPck3 = Package(3, "233 Canyon Rd", "Salt Lake City", "UT", 84103, "EOD", 2, "Can only be on truck 2", None,
                       False)
     newPck4 = Package(4, "380 W 2880 S", "Salt Lake City", "UT", 84115, "EOD", 4, None, None, False)
     newPck5 = Package(5, "410 S State St", "Salt Lake City", "UT", 84111, "EOD", 5, None, None, False)
-    newPck6 = Package(6, "3060 Lester St", "West Valley City", "UT", 84119, "###", 88,
+    newPck6 = Package(6, "3060 Lester St", "West Valley City", "UT", 84119, "10:30 AM", 88,
                       "Delayed on flight---will not arrive to depot until 9:05 am", None, False)
     newPck7 = Package(7, "1330 2100 S", "Salt Lake City", "UT", 84106, "EOD", 8, None, None, False)
     newPck8 = Package(8, "300 State St", "Salt Lake City", "UT", 84103, "EOD", 9, None, None, False)
@@ -21,8 +21,8 @@ def readFile(packageTable):
     newPck11 = Package(11, "2600 Taylorsville Blvd", "Salt Lake City", "UT", 84118, "EOD", 1, None, None, False)
     newPck12 = Package(12, "3575 W Valley Central Station bus Loop", "West Valley City", "UT", 84119, "EOD", 1, None,
                        None, False)
-    newPck13 = Package(13, "2010 W 500 S", "Salt Lake City", "UT", 84104, "###", 2, None, None, False)
-    newPck14 = Package(14, "4300 S 1300 E", "Millcreek", "UT", 84117, "###", 88, "Must be delivered with 15 and 19",
+    newPck13 = Package(13, "2010 W 500 S", "Salt Lake City", "UT", 84104, "10:30 AM", 2, None, None, False)
+    newPck14 = Package(14, "4300 S 1300 E", "Millcreek", "UT", 84117, "10:30 AM", 88, "Must be delivered with 15 and 19",
                        None, False)
     newPck15 = Package(15, "4580 S 2300 E", "Holladay", "UT", 84117, "9:00 AM", 4, None, None, False)
     newPck16 = Package(16, "4580 S 2300 E", "Holladay", "UT", 84117, "10:30 AM", 88, "Must be delivered with 13 and 19",
@@ -31,31 +31,31 @@ def readFile(packageTable):
     newPck18 = Package(18, "1488 4800 S", "Salt Lake City", "UT", 84123, "EOD", 6, "Can only be on truck 2", None,
                        False)
     newPck19 = Package(19, "177 W Price Ave", "Salt Lake City", "UT", 84115, "EOD", 37, None, None, False)
-    newPck20 = Package(20, "3595 Main St", "Salt Lake City", "UT", 84115, "###", 37, "Must be delivered with 13 and 15",
+    newPck20 = Package(20, "3595 Main St", "Salt Lake City", "UT", 84115, "10:30 AM", 37, "Must be delivered with 13 and 15",
                        None, False)
 
     newPck21 = Package(21, "3595 Main St", "Salt Lake City", "UT", 84115, "EOD", 3, None, None, False)
     newPck22 = Package(22, "6351 South 900 East", "Murray", "UT", 84121, "EOD", 2, None, None, False)
     newPck23 = Package(23, "5100 South 2700 West", "Salt Lake City", "UT", 84118, "EOD", 5, None, None, False)
     newPck24 = Package(24, "5025 State St", "Murray", "UT", 84107, "EOD", 7, None, None, False)
-    newPck25 = Package(25, "5383 South 900 East #104", "Salt Lake City", "UT", 84117, "###", 7,
+    newPck25 = Package(25, "5383 South 900 East #104", "Salt Lake City", "UT", 84117, "10:30 AM", 7,
                        "Delayed on flight---will not arrive to depot until 9:05 am", None, False)
     newPck26 = Package(26, "5383 South 900 East #104", "Salt Lake City", "UT", 84117, "EOD", 25, None, None, False)
     newPck27 = Package(27, "1060 Dalton Ave S", "Salt Lake City", "UT", 84104, "EOD", 5, None, None, False)
     newPck28 = Package(28, "2835 Main St", "Salt Lake City", "UT", 84115, "EOD", 7,
                        "Delayed on flight---will not arrive to depot until 9:05 am", None, False)
-    newPck29 = Package(29, "1330 2100 S", "Salt Lake City", "UT", 84106, "###", 2, None, None, False)
-    newPck30 = Package(30, "300 State St", "Salt Lake City", "UT", 84103, "###", 1, None, None, False)
+    newPck29 = Package(29, "1330 2100 S", "Salt Lake City", "UT", 84106, "10:30 AM", 2, None, None, False)
+    newPck30 = Package(30, "300 State St", "Salt Lake City", "UT", 84103, "10:30 AM", 1, None, None, False)
 
-    newPck31 = Package(31, "3365 S 900 W", "Salt Lake City", "UT", 84119, "###", 1, None, None, False)
+    newPck31 = Package(31, "3365 S 900 W", "Salt Lake City", "UT", 84119, "10:30 AM", 1, None, None, False)
     newPck32 = Package(32, "3365 S 900 W", "Salt Lake City", "UT", 84119, "EOD", 1,
                        "Delayed on flight---will not arrive to depot until 9:05 am", None, False)
     newPck33 = Package(33, "2530 S 500 E", "Salt Lake City", "UT", 84106, "EOD", 1, None, None, False)
-    newPck34 = Package(34, "4580 S 2300 E", "Holladay", "UT", 84117, "###", 2, None, None, False)
+    newPck34 = Package(34, "4580 S 2300 E", "Holladay", "UT", 84117, "10:30 AM", 2, None, None, False)
     newPck35 = Package(35, "1060 Dalton Ave S", "Salt Lake City", "UT", 84104, "EOD", 88, None, None, False)
     newPck36 = Package(36, "2300 Parkway Blvd", "West Valley City", "UT", 84119, "EOD", 88, "Can only be on truck 2",
                        None, False)
-    newPck37 = Package(37, "410 S State St", "Salt Lake City", "UT", 84111, "###", 2, None, None, False)
+    newPck37 = Package(37, "410 S State St", "Salt Lake City", "UT", 84111, "10:30 AM", 2, None, None, False)
     newPck38 = Package(38, "410 S State St", "Salt Lake City", "UT", 84111, "EOD", 9, "Can only be on truck 2", None,
                        False)
     newPck39 = Package(39, "2010 W 500 S", "Salt Lake City", "UT", 84104, "EOD", 9, None, None, False)
@@ -826,12 +826,7 @@ def readFile(packageTable):
 def read(table):
     distanceTable, addressTable, packageTable = readFile(table)
 
-    truckOne = []
-    truckTwo = []
-
-    truckOneFirstLoad = truckOneLoadOne(truckOne)
-    truckTwoFirstLoad = truckTwoLoadOne(truckTwo)
-    return truckOneFirstLoad, truckTwoFirstLoad, distanceTable, addressTable, packageTable
+    return distanceTable, addressTable, packageTable
 
 
 # this function is what finds the distance from one location to another by matching indices from the address table
@@ -860,65 +855,79 @@ def address_lookup(fromLocation, toLocation, addressTable, distanceTable):
 
 # this load functions time and space complexity wise are 0(N) since these lists grow linearly with their inputs
 # even though constraints dictate that they can only carry 16 at one time.
-def truckOneLoadOne(truckOne):
-    truckOne.append(1)
-    truckOne.append(2)
-    truckOne.append(4)
-    truckOne.append(5)
-    truckOne.append(7)
-
-    truckOne.append(8)
-    truckOne.append(10)
-    truckOne.append(11)
-    truckOne.append(12)
-    truckOne.append(13)
-
-    truckOne.append(14)
-    truckOne.append(15)
-    truckOne.append(16)
-    truckOne.append(17)
+def truckOnePriorityLoadOne(truckOne):
+    truckOne.append(15)     #900 DL
+    truckOne.append(1)      #1030 DL
+    truckOne.append(13)     #1030 DL
+    truckOne.append(14)     #1030 DL
+    truckOne.append(16)     #1030 DL
+    truckOne.append(20)     #1030 DL
+    truckOne.append(31)     #1030 DL
+    truckOne.append(30)     #1030 DL
+    truckOne.append(37)
     truckOne.append(19)
 
-    truckOne.append(20)
     return truckOne
 
 
-def truckTwoLoadOne(truckTwo):
+def truckOneLoadTwo(truckOne):
+    truckOne.append(4)
+    truckOne.append(5)
+    truckOne.append(7)
+    truckOne.append(8)
+
+    truckOne.append(10)
+    truckOne.append(11)
+    truckOne.append(12)
+    truckOne.append(17)
+
+
+
+    return truckOne
+
+
+def truckTwoPriorityLoadOne(truckTwo):
     # truck leaves at 9:05
+    truckTwo.append(6)      #1030 DL
+    truckTwo.append(25)     #1030 DL
+    truckTwo.append(29)     #1030 DL
+    truckTwo.append(34)     #1030 DL
+
+    truckTwo.append(40)     #1030 DL
+    return truckTwo
+
+
+def truckTwoLoadTwo(truckTwo):
+
     truckTwo.append(3)
-    truckTwo.append(6)
     truckTwo.append(18)
     truckTwo.append(21)
     truckTwo.append(22)
 
     truckTwo.append(23)
     truckTwo.append(24)
-    truckTwo.append(25)
-    truckTwo.append(26)
-    truckTwo.append(27)
-
     truckTwo.append(28)
-    truckTwo.append(29)
-    truckTwo.append(30)
     truckTwo.append(32)
     truckTwo.append(36)
-
     truckTwo.append(38)
     return truckTwo
 
 
-def truckOneLoadTwo(truckOne):
+def truckOneLoadThree(truckOne):
     # packages on truck one after 10:32
 
-    truckOne.append(9)
-    truckOne.append(31)
-    truckOne.append(33)
-    truckOne.append(34)
-    truckOne.append(35)
 
-    truckOne.append(37)
+    truckOne.append(2)
+
+    truckOne.append(33)
+    truckOne.append(26)
+
+    truckOne.append(35)
+    truckOne.append(27)
+
+
     truckOne.append(39)
-    truckOne.append(40)
+    truckOne.append(9)
 
     return truckOne
 

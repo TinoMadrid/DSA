@@ -8,7 +8,7 @@
 from Algorithm.hashImplementation import hashTable
 from IO import readInput
 
-currTimeForTruckOne = 8.10
+currTimeForTruckOne = 8.0
 currTimeForTruckTwo = 9.05
 loadTwoDone = False
 allMileage = 0
@@ -23,30 +23,60 @@ def formatTime(number):
 # this is O(1) since there isn't any significant overhead
 def timeWhenPackageIsDelivered(distance, speed, isTruckOne):
     timeElapsed = distance / speed
+    timeElapsed = round(timeElapsed, 2)
     global currTimeForTruckOne
     global currTimeForTruckTwo
 
-    if 0 <= timeElapsed <= 0.25:
+    if 0 <= timeElapsed <= 0.1:
+        if isTruckOne:
+            currTimeForTruckOne = currTimeForTruckOne + 0.01
+            return currTimeForTruckOne
+        else:
+            currTimeForTruckTwo = currTimeForTruckTwo + 0.01
+            return currTimeForTruckTwo
+    elif 0.11 <= timeElapsed <= 0.2:
+        if isTruckOne:
+            currTimeForTruckOne = currTimeForTruckOne + 0.1
+            return currTimeForTruckOne
+        else:
+            currTimeForTruckTwo = currTimeForTruckTwo + 0.1
+            return currTimeForTruckTwo
+    elif 0.21 <= timeElapsed <= 0.25:
         if isTruckOne:
             currTimeForTruckOne = currTimeForTruckOne + 0.15
             return currTimeForTruckOne
         else:
             currTimeForTruckTwo = currTimeForTruckTwo + 0.15
             return currTimeForTruckTwo
-    elif 0.26 <= timeElapsed <= 0.5:
+    elif 0.26 <= timeElapsed <= 0.35:
+        if isTruckOne:
+            currTimeForTruckOne = currTimeForTruckOne + 0.2
+            return currTimeForTruckOne
+        else:
+            currTimeForTruckTwo = currTimeForTruckTwo + 0.2
+            return currTimeForTruckTwo
+    elif 0.35 <= timeElapsed <= 0.5:
         if isTruckOne:
             currTimeForTruckOne = currTimeForTruckOne + 0.3
             return currTimeForTruckOne
         else:
             currTimeForTruckTwo = currTimeForTruckTwo + 0.3
             return currTimeForTruckTwo
-    elif 0.51 <= timeElapsed <= 0.75:
+    elif 0.51 <= timeElapsed <= 0.6:
+        if isTruckOne:
+            currTimeForTruckOne = currTimeForTruckOne + 0.35
+            return currTimeForTruckOne
+        else:
+            currTimeForTruckTwo = currTimeForTruckTwo + 0.35
+            return currTimeForTruckTwo
+    elif 0.61 <= timeElapsed <= 0.75:
         if isTruckOne:
             currTimeForTruckOne = currTimeForTruckOne + 0.45
             return currTimeForTruckOne
         else:
             currTimeForTruckTwo = currTimeForTruckTwo + 0.45
             return currTimeForTruckTwo
+
     else:
         if isTruckOne:
             currTimeForTruckOne = currTimeForTruckOne + 1
@@ -86,7 +116,8 @@ def interface(packageTable, isTruckOne, loadedTruck, totalDistanceTraveled):
         t1
     else:
         t1 = 2
-    print("Press 1 to continue deliveries, 2 for package info, 3 for time, 4 to print truck contents , 5 to quit program, 6 to show mileage traveled so far")
+    print(
+        "Press 1 to continue deliveries, 2 for package info, 3 for time, 4 to print truck contents , 5 to quit program, 6 to show mileage traveled so far")
     choice = int(input())
     if choice == 1:
         None
@@ -133,19 +164,16 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
     global loadTwoDone
     global allMileage
 
-    interface(packageTable, isTruckOne, loadedTruck, totalDistanceTraveled)
-
+    # interface(packageTable, isTruckOne, loadedTruck, totalDistanceTraveled)
     while len(loadedTruck) >= 1:  # last item in list is the truck address
 
         for i in range(len(loadedTruck)):
             potentialPackage = packageTable.lookup(loadedTruck[i])  # do package lookup
-            packageDistance = readInput.address_lookup(truckPosition, potentialPackage.address, addressTable,
-                                                       distanceTable)  # retrieve distance
+            packageDistance = readInput.address_lookup(truckPosition, potentialPackage.address, addressTable, distanceTable)  # retrieve distance
             potentialPackage.isLoaded = True
             if packageDistance < findSmallest:  # now check if the package distance is smaller than previous
                 findSmallest = packageDistance  # update the min value if it is
-                dictionaryForSmallestDistanceInTruck[
-                    'PackageID'] = potentialPackage.packageID  # then set the dictionary variable
+                dictionaryForSmallestDistanceInTruck['PackageID'] = potentialPackage.packageID  # then set the dictionary variable
                 dictionaryForSmallestDistanceInTruck['PackageDistance'] = packageDistance
                 if currTimeForTruckOne >= 10.30 and loadTwoDone == False:  # check to see if load two is ready to go
                     if isTruckOne:
@@ -154,8 +182,7 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
         interface(packageTable, isTruckOne, loadedTruck, totalDistanceTraveled)
 
         # after finding the next smallest, go there and update truck address
-        package = packageTable.lookup(
-            dictionaryForSmallestDistanceInTruck['PackageID'])  # get package address from packageID
+        package = packageTable.lookup(dictionaryForSmallestDistanceInTruck['PackageID'])  # get package address from packageID
 
         tempTimeStamp = timeWhenPackageIsDelivered(findSmallest, 18, isTruckOne)
         tStamp = convertDecimalToTime(tempTimeStamp, isTruckOne)
@@ -164,8 +191,7 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
         truckPosition = package.address  # set the truck new address
         loadedTruck.remove(dictionaryForSmallestDistanceInTruck['PackageID'])  # now remove the package from the truck
         findSmallest = 99  # reset the minValue
-        totalDistanceTraveled = totalDistanceTraveled + dictionaryForSmallestDistanceInTruck[
-            'PackageDistance']  # add distance to total distance traveled
+        totalDistanceTraveled = totalDistanceTraveled + dictionaryForSmallestDistanceInTruck['PackageDistance']  # add distance to total distance traveled
 
     allMileage = allMileage + totalDistanceTraveled
 
@@ -173,11 +199,24 @@ def nearestNeighbor(loadedTruck, distanceTable, addressTable, packageTable, isTr
 if __name__ == '__main__':
     print("Welcome to WGU package delivery program! Press 1 to continue or 0 to exit")
     selection = int(input())
+    tOne = []
+    tTwo = []
 
     if selection == 1:
         testHash = hashTable()
-        loadedTruckOne, loadedTruckTwo, distanceData, addressData, packageData = readInput.read(testHash)
+        distanceData, addressData, packageData = readInput.read(testHash)
+
+        loadedTruckOne = readInput.truckOnePriorityLoadOne(tOne)
         nearestNeighbor(loadedTruckOne, distanceData, addressData, packageData, True)
+
+        loadedTruckOne = readInput.truckOneLoadThree(tOne)
+        nearestNeighbor(loadedTruckOne, distanceData, addressData, packageData, True)
+
+        loadedTruckTwo = readInput.truckTwoPriorityLoadOne(tTwo)
         nearestNeighbor(loadedTruckTwo, distanceData, addressData, packageData, False)
+
+        loadedTruckTwo = readInput.truckTwoLoadTwo(tTwo)
+        nearestNeighbor(loadedTruckTwo, distanceData, addressData, packageData, False)
+
         print("Total distance traveled", allMileage)
         readInput.printPackageInfo(packageData)
